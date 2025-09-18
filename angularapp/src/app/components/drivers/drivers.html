@@ -1,0 +1,115 @@
+<!-- Top Section: Driver Options -->
+<section class="driver-options fade-up">
+  <h1>Make Money. Earn Respect. Secure Your Future.</h1>
+  <p>Apply now to become a CabMate driver-partner. Start earning in 24 hours!</p>
+
+  <div class="driver-cards">
+    <div class="card">
+      <img src="assets/images/partner.jpg" alt="Partner with a Car">
+      <h3>Join CabMate as a <br><span>Partner with a Car</span></h3>
+      <a [routerLink]="['/attach-car']" class="btn-outline">Attach my Car</a>
+    </div>
+
+    <div class="card">
+      <img src="assets/images/driver1.jpg" alt="Need a Car">
+      <h3>Know driving?<br><span>We've a car for you!</span></h3>
+      <a [routerLink]="['/attach-car']" class="btn-outline">I Need a Car</a>
+    </div>
+
+    <div class="card">
+      <img src="assets/images/owner.jpg" alt="Fleet Operator">
+      <h3>Become a<br><span>Fleet Operator</span></h3>
+      <a [routerLink]="['/attach-car']" class="btn-outline">Attach a Fleet</a>
+    </div>
+  </div>
+</section>
+
+<!-- Driver Requirements Section -->
+<section class="driver-section">
+  <div class="driver-text">
+    <h1>Driver <span>requirements</span></h1>
+    <p>
+      CabMate is a great way to be your own boss and earn great money.  
+      From a commercial license to a car, CabMate can help you every step of the way.
+    </p>
+    <a [routerLink]="['/login']" [queryParams]="{ type: 'driver' }" class="btn primary">Sign up to drive</a>
+  </div>
+  <div class="driver-image">
+    <img src="assets/images/driver2.jpg" alt="Happy Driver">
+  </div>
+</section>
+
+
+
+<!-- Drive When You Want Section -->
+<section class="drive-section drive">
+  <h2>Drive when you want</h2>
+  <div class="drive-grid">
+    <div class="drive-card">
+      <i class="fas fa-money-bill-wave"></i>
+      <h3>Earn anytime, anywhere</h3>
+      <p>You can drive and make as much as you want. The more you drive, the more you could make.</p>
+    </div>
+    <div class="drive-card">
+      <i class="fas fa-calendar-alt"></i>
+      <h3>Set your own schedule</h3>
+      <p>Only drive when it works for you. No office, no boss. You're in charge.</p>
+    </div>
+    <div class="drive-card">
+      <i class="fas fa-check-square"></i>
+      <h3>Safety behind the wheel</h3>
+      <p>CabMate keeps people safe before, during, and after every trip.</p>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Why Drive With CabMate Section -->
+<section class="drive-section">
+  <h2>Why drive with CabMate</h2>
+  <div class="drive-grid">
+    <div class="drive-card2">
+      <i class="fas fa-clock"></i>
+      <h3>Work when you want</h3>
+      <p>Early mornings, late nights, or weekends — drive when life allows.</p>
+    </div>
+    <div class="drive-card2">
+      <i class="fas fa-headset"></i>
+      <h3>Get help that moves with you</h3>
+      <p>Support is always a few taps away.</p>
+    </div>
+    <div class="drive-card2">
+      <i class="fas fa-gem"></i>
+      <h3>Drive more, earn more rewards</h3>
+      <p>Exclusive perks through our driver rewards program.</p>
+    </div>
+    <div class="driver-text">
+      <a [routerLink]="['/login']" [queryParams]="{ type: 'driver' }" class="btn primary">Sign up to earn</a>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- It's Easy To Get Started Section -->
+<section class="drive-section drive">
+  <h2>It's easy to get started</h2>
+  <div class="drive-grid">
+    <div class="drive-card">
+      <h3>1. Sign up online</h3>
+      <p>Tell us about yourself and your car, if you have one. If not, we'll help you get one.</p>
+    </div>
+    <div class="drive-card">
+      <h3>2. Share some documents</h3>
+      <p>Upload the required documents.</p>
+    </div>
+    <div class="drive-card">
+      <h3>3. Activate your account</h3>
+      <p>Bring your car to a hub. Requirements vary by city.</p>
+    </div>
+    <div class="driver-text">
+      <a [routerLink]="['/login']" [queryParams]="{ type: 'driver' }" class="btn-link">Sign up now</a>
+    </div>
+  </div>
+</section>

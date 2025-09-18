@@ -1,0 +1,66 @@
+<!-- Slideshow Section -->
+<section class="slideshow">
+  <div class="slides-container">
+    <!-- Slide 1 -->
+    <div class="slide">
+      <img src="assets/images/RideScheduling.png" alt="CabMate City Rides">
+      <div class="slide-text">
+        <h3>Ride Scheduling</h3>
+        <p>Book your cab in advance for airport drops, early morning pickups, or important meetings, and travel stress-free.</p>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+      <img src="assets/images/LiveTracking.png" alt="Outstation Trips">
+      <div class="slide-text">
+        <h3>Live Tracking</h3>
+        <p>Track your driver in real-time with ETA updates on the map for a safer and more reliable ride.</p>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+      <img src="assets/images/TripHistory.png" alt="Premium Cab Service">
+      <div class="slide-text">
+        <h3>Trip History</h3>
+        <p>Access detailed past rides with fare, route, and driver info—perfect for expense management and easy record-keeping.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Buttons -->
+  <button class="prev" (click)="changeSlide(-1)"></button>
+  <button class="next" (click)="changeSlide(1)"></button>
+</section>
+
+<!-- Services Section -->
+<section class="services">
+  <h2>Services</h2>
+  <div class="service-container">
+    <div class="service-card" *ngFor="let s of services">
+      <div class="service-text">
+        <h3>{{ s.title }}</h3>
+        <p>{{ s.desc }}</p>
+        <button class="details-btn">Details</button>
+      </div>
+      <img [src]="s.img" [alt]="s.title">
+    </div>
+  </div>
+</section>
+
+<!-- Login Promo Section -->
+<section class="login-promo">
+  <div class="login-text">
+    <h2>Log in to see your account details</h2>
+    <p>View past trips, tailored suggestions, support resources, and more.</p>
+    <div class="login-buttons">
+      <a routerLink="/signin" class="btn-black">Log in to your account</a>
+      <a [routerLink]="['/login']" [queryParams]="{ type: 'user' }" class="btn-link">Create an account</a>
+    </div>
+  </div>
+  <div class="login-image">
+    <img src="assets/images/service1.png" alt="Login Promo">
+  </div>
+</section>
+

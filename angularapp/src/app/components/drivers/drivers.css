@@ -1,0 +1,245 @@
+/* Driver Options Section */
+
+.driver-options {
+  text-align: center;
+  padding: 60px 10%;
+}
+
+.driver-options h1 {
+  font-size: 2.5rem;
+  font-family: "Trirong", serif;
+  margin-bottom: 15px;
+}
+
+.driver-options p {
+  font-size: 1.2rem;
+  font-family: Georgia, serif;
+  margin-bottom: 40px;
+  color: #555;
+}
+
+.driver-cards {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.driver-cards .card {
+  flex: 1;
+  min-width: 250px;
+  max-width: 300px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.driver-cards .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.driver-cards .card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.driver-cards .card h3 {
+  font-size: 1.2rem;
+  font-family: Georgia, serif;
+  margin-bottom: 15px;
+}
+
+.driver-cards .card span {
+  font-weight: bold;
+  color: #e9910d;
+}
+
+.btn-outline {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 2px solid #007bff;
+  border-radius: 30px;
+  color: #007bff;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background: #007bff;
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .driver-options h1 {
+    font-size: 1.8rem;
+  }
+
+  .driver-options p {
+    font-size: 1rem;
+  }
+
+  .driver-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Driver Page */
+.driver-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+  padding: 60px 5%;
+  flex-wrap: wrap;
+}
+
+.driver-text {
+  flex: 1;
+}
+
+.driver-text h1 {
+  font-size: 3rem;
+  font-family: "Trirong", serif;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.driver-text h1 span {
+  color: #e9910d; /* highlight */
+}
+
+.driver-text p {
+  font-size: 1.2rem;
+  font-family: Georgia, serif;
+  margin-bottom: 25px;
+  color: #444;
+  line-height: 1.6;
+}
+
+.driver-text .btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background: black;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.driver-text .btn:hover {
+  background: #f85b00;
+  color: #ffffff;
+}
+
+.driver-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.driver-image img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 10px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .driver-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .driver-text h1 {
+    font-size: 2.2rem;
+  }
+
+  .driver-text p {
+    font-size: 1rem;
+  }
+
+  .driver-image img {
+    max-width: 100%;
+  }
+}
+
+/* Drive Section */
+.drive-section {
+  padding: 40px 5%;
+  background: #ffffff;
+  
+}
+
+.drive-section h2 {
+  font-size: 2rem;
+  font-family: "Trirong", serif;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: #222;
+}
+
+.drive{
+   background-image: linear-gradient(to right, #a1c4fd 0%, #c2e9fb 51%, #a1c4fd 100%);
+}
+
+.drive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.drive-card2{
+  padding: 10px;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-image: linear-gradient(to right, #a1c4fd 0%, #c2e9fb 51%, #a1c4fd 100%);
+}
+
+.drive-card {
+  background: #ffffff;
+  padding: 10px;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.drive-card.drive-card2 i {
+  font-size: 2rem;
+  color: #000000;
+  margin-bottom: 15px;
+}
+
+.drive-card.drive-card2 h3 {
+  font-size: 1.2rem;
+  font-family: Georgia, serif;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.drive-card.drive-card2 p {
+  font-size: 0.95rem;
+  font-family: Georgia, serif;
+  color: #555;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+.btn-link {
+  color: black;
+  border-bottom: 2px solid black;
+  font-weight: bold;
+  border-radius: 8px;
+  text-decoration: none;
+  padding: 12px 20px;
+}

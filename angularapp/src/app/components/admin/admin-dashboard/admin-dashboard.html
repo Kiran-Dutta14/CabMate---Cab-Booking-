@@ -1,0 +1,76 @@
+<div class="dashboard">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>CabMate</h2>
+    <p>Admin Dashboard</p>
+    <hr>
+    <ul>
+      <h3>MANAGEMENT</h3>
+      <li><img src="assets/images/dashboard.png" style="height:25px ; width:25px">Dashboard</li>
+      <li><img src="assets/images/driver.png">Drivers</li>
+      <li><img src="assets/images/user.png">Users</li>
+      <li><img src="assets/images/car.png">Vehicles</li>
+      <li><img src="assets/images/fare.png">Fares & Rides</li>
+      <li><img src="assets/images/supportticket.png">Support</li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="navbar">
+      <h3>Dashboard</h3>
+    </div>
+
+    <div class="cards">
+        <div class="card">
+            <div class="card-icon user"></div>
+            <h4>Total Drivers</h4>
+            <p class="card-value">3</p>
+            <p class="card-sub">Active drivers <span class="growth">▲ +12%</span></p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon vehicle"></div>
+            <h4>Total Vehicles</h4>
+            <p class="card-value">3</p>
+            <p class="card-sub">Available vehicles <span class="growth">▲ +8%</span></p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon ride"></div>
+            <h4>Total Rides</h4>
+            <p class="card-value">3</p>
+            <p class="card-sub">All time rides <span class="growth">▲ +23%</span></p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon ticket"></div>
+            <h4>Open Tickets</h4>
+            <p class="card-value">2</p>
+            <p class="card-sub">Pending support</p>
+        </div>
+    </div>
+
+
+    <div class="revenue">
+      <h2>$90.50</h2>
+      <p>Total Revenue</p>
+    </div>
+
+    <div class="charts">
+        <div class="chart-box">
+            <h3>Monthly Performance</h3>
+            <canvas id="monthlyChart"></canvas>
+        </div>
+        <div class="chart-box">
+            <h3>Ride Status Distribution</h3>
+            <canvas id="statusChart"></canvas>
+        </div>
+    </div>
+
+    <div class="tables">
+      <div class="table-box">Recent Rides (Placeholder)</div>
+      <div class="table-box">Recent Support Tickets (Placeholder)</div>
+    </div>
+  </div>
+</div>

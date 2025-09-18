@@ -1,0 +1,243 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fff;
+  color: #111;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 40px;
+  background: #edeaea;
+  border-bottom: 1px solid #ddd;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-links a {
+  margin: 0 12px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 800;
+}
+
+.profile-btn {
+  background: #111;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.profile-menu {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background: #ffffff;
+  color: #000;
+  border-radius: 8px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  padding: 12px;
+  width: 300px;
+  z-index: 1000; 
+}
+
+.dropdown-header {
+  border-bottom: 1px solid #eee;
+  margin-bottom: 10px;
+}
+
+.dropdown-btn {
+  background: #111;
+  color: #fff;
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.dropdown-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.dropdown-actions button {
+  flex: 1;
+  margin: 0 5px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.dropdown-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-links li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.signout-btn {
+  background: red;
+  color: white;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  margin-top: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Dashboard */
+.dashboard {
+  padding: 40px 80px;
+}
+
+.dashboard h1 {
+  font-size: 2rem;
+  margin-bottom: 5px;
+}
+
+.dashboard p {
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* Cards */
+.cards {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1;
+  min-width: 280px;
+  background: #f9f9f9;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: left;
+}
+
+.card img {
+  width: 100%;
+  height: 280px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.card button {
+  background: #111;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cards {
+    flex-direction: column;
+  }
+}
+
+/* Ride Section */
+.ride-section {
+  display: flex;
+  padding: 40px 80px;
+  gap: 20px;
+}
+
+.ride-form {
+  width: 300px;
+  background: #e1dfdf;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  height: fit-content;
+}
+
+.ride-form h2 {
+  margin-bottom: 15px;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.ride-form input,
+.ride-form select,
+.ride-form button {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.ride-form button {
+  background: #111;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.ride-form input {
+  padding-left: 40px;
+}
+
+.input-icon1 {
+  background: url('/assets/images/pickup.png') no-repeat 10px center;
+  background-size: 16px;
+  padding-left: 35px; /* Make space for icon */
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 250px;
+}
+
+.input-icon2 {
+  background: url('/assets/images/dropoff.png') no-repeat 10px center;
+  background-size: 16px;
+  padding-left: 35px; /* Make space for icon */
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 250px;
+}
+
+#map {
+  flex: 1;
+  height: 500px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .ride-section {
+    flex-direction: column;
+  }
+  #map {
+    height: 400px;
+  }
+}

@@ -1,0 +1,105 @@
+<!-- Riders Section -->
+<section class="rider-section">
+  <div class="rider-left">
+    <h1>Request a ride for<br>now or later</h1>
+    <p class="offer"><strong>Up to 50% off</strong> your first 5 CabMate rides.</p>
+    <p class="small"><small>*Valid within 15 days of signup.</small></p>
+
+    <form class="ride-form" (ngSubmit)="$event.preventDefault()">
+      <input type="text" [(ngModel)]="pickup" name="pickup" placeholder="Enter location" required>
+      <input type="text" [(ngModel)]="destination" name="destination" placeholder="Enter destination" required>
+      <div class="form-buttons">
+        <button type="button" (click)="seePrices()">See prices</button>
+        <button type="button" (click)="scheduleLater()">Schedule for later</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="rider-right">
+    <img src="assets/images/riders1.png" alt="Rider Illustration">
+  </div>
+</section>
+
+<!-- Plan for Later Section -->
+<section class="plan-later">
+  <h2>Plan for later</h2>
+  <div class="plan-container">
+    <!-- Left -->
+    <div class="plan-left">
+      <p class="sub-heading">Get your ride right with CabMate Reserve</p>
+      <p class="choose">Choose date and time</p>
+
+      <form class="reserve-form" (ngSubmit)="$event.preventDefault()">
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input type="date" [(ngModel)]="reserveDate" name="reserveDate" required>
+        </div>
+        <div class="form-group">
+          <label for="time">Time</label>
+          <input type="time" [(ngModel)]="reserveTime" name="reserveTime" required>
+        </div>
+         <div class="form-actions">
+            <button type="button" (click)="reserveRide()">Next</button>
+          </div>
+      </form>
+    </div>
+
+    <!-- Right -->
+    <div class="plan-right">
+      <h3>Benefits</h3>
+      <ul>
+        <li> <i class="fa-solid fa-calendar-days"></i> Choose your exact pickup time up to 90 days in advance.</li>
+        <li> <i class="fa-solid fa-clock"></i> Extra wait time included to meet your ride.</li>
+        <li> <i class="fa-solid fa-ban"></i> Cancel at no charge up to 60 minutes in advance.</li>
+      </ul>
+      <a href="#" class="terms">See terms</a>
+    </div>
+  </div>
+</section>
+
+<!-- Group Ride Section -->
+<section class="group-ride">
+  <div class="group-ride-container">
+    <div class="group-ride-image">
+      <img src="assets/images/riders2.png" alt="Group Ride">
+    </div>
+    <div class="group-ride-text">
+      <h2>Ride with friends seamlessly</h2>
+      <p>
+        Riding with friends just got easier: set up a group ride in the app, 
+        invite your friends, and arrive at your destination together.
+      </p>
+      <a href="#" class="learn-more">Learn more</a>
+    </div>
+  </div>
+</section>
+
+<!-- Ride Info Section -->
+<section class="ride-info">
+  <h1>Use the CabMate app to help you travel your way</h1>
+  <div class="ride-info-container">
+    <div class="ride-card">
+      <img src="assets/images/ride-option.png" alt="Ride options">
+      <h3>Ride options</h3>
+      <p>There’s more than one way to move with CabMate, no matter where you are or where you’re headed next.</p>
+    </div>
+
+    <div class="ride-card">
+      <img src="assets/images/airport1.png" alt="Airports">
+      <h3>700+ airports</h3>
+      <p>
+        You can request a ride to and from most major airports. 
+        Schedule a ride to the airport for one less thing to worry about.
+      </p>
+    </div>
+
+    <div class="ride-card">
+      <img src="assets/images/cities.jpg" alt="Cities">
+      <h3>15,000+ cities</h3>
+      <p>
+        The app is available in thousands of cities worldwide, so you can 
+        request a ride even when you're far from home.
+      </p>
+    </div>
+  </div>
+</section>

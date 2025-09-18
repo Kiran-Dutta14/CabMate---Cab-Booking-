@@ -1,0 +1,191 @@
+:host {
+  display: block;
+  min-height: 100vh; /* full screen height */
+  background: #bad7f4;
+  background-image: url('/assets/images/attach1.png');
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: 400px;
+}
+
+/* ==== Section Container ==== */
+.cab-driver-section {
+  padding: 50px 10%;
+  text-align: center;
+}
+
+.cab-driver-section h1 {
+  font-size: 42px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 50px;
+  position: relative;
+  font-family: "Trirong", serif;
+}
+
+.cab-driver-section h1::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 4px;
+  background: #3498db;
+  margin: 12px auto 0;
+  border-radius: 2px;
+  animation: slideIn 1s ease forwards;
+}
+
+/* ==== Main Container ==== */
+.cab-driver-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+/* ==== Form Box ==== */
+.form-box {
+  flex: 1;
+  min-width: 320px;
+  background: #f9fafc;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  height: 565px;
+  transform: translateY(40px);
+  opacity: 0;
+  animation: fadeUp 1s ease forwards;
+}
+
+.form-box h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 600;
+  font-family: "Trirong", serif;
+  color: #34495e;
+}
+
+.form-box label {
+  display: block;
+  margin: 12px 0 6px;
+  font-weight: 500;
+  font-family: Georgia, serif;
+  color: #555;
+  text-align: left;
+}
+
+.form-box input,
+.form-box select {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  border: 1px solid #c8c6c6;
+  background: #ddd;
+  border-radius: 10px;
+  outline: none;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+  font-size: 15px;
+}
+
+.form-box input:focus,
+.form-box select:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  background: linear-gradient(135deg, #3498db, #2980b9);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(135deg, #2980b9, #1f6391);
+  transform: translateY(-3px);
+}
+
+/* ==== Documents Box ==== */
+.documents-box {
+  flex: 1;
+  min-width: 320px;
+  background: #f9fafc;
+  background-image: url('/assets/images/doc.jpg');
+   background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: 300px;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transform: translateY(40px);
+  opacity: 0;
+  animation: fadeUp 1s ease forwards;
+  animation-delay: 0.3s; /* Animate after form */
+}
+
+.documents-box h2 {
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 600;
+  font-family: "Trirong", serif;
+  color: #34495e;
+  text-align: center;
+}
+
+.doc-section {
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.doc-section h4 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: Georgia, serif;
+  color: #2c3e50;
+}
+
+.doc-section ul {
+  padding-left: 18px;
+  color: #555;
+  list-style: none;
+}
+
+.doc-section ul li {
+  margin-bottom: 6px;
+  font-size: 15px;
+  position: relative;
+}
+
+.doc-section ul li::before {
+  content: "✔";
+  color: #27ae60;
+  margin-right: 8px;
+  font-weight: bold;
+}
+
+/* ==== Animations ==== */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}

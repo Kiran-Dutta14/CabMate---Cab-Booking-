@@ -1,0 +1,410 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Rider Section */
+.rider-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px;
+  gap: 40px;
+}
+
+.rider-left {
+  flex: 1;
+}
+
+.rider-left h1 {
+  font-size: 42px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.rider-left .offer {
+  color: #444;
+  margin-bottom: 6px;
+}
+
+.rider-left .small{
+  margin-bottom: 10px;
+  color: #686767;
+  font-size: 18px;
+}
+
+.ride-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 400px;
+}
+
+.ride-form input {
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  background: #ddd;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.form-buttons button {
+  flex: 1;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  background-color: #000;
+  color: #fff;
+}
+
+
+
+#seePrices:hover {
+  background: #333;
+}
+
+#scheduleLater {
+  background: #f0f0f0;
+  color: black;
+}
+
+#scheduleLater:hover {
+  background: #ddd;
+}
+
+/* Rider Image */
+.rider-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.rider-right img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .rider-section {
+    flex-direction: column;
+    padding: 30px;
+    text-align: center;
+  }
+
+  .form-buttons {
+    flex-direction: column;
+  }
+
+  .rider-left h1 {
+    font-size: 32px;
+  }
+}
+
+/* Plan for Later Section */
+.plan-later {
+  padding: 60px;
+  background: #f9f9f9;
+}
+
+.plan-later h2 {
+  font-size: 35px;
+  margin-bottom: 10px;
+  padding-left: 20px;
+}
+
+.plan-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.plan-left {
+  flex: 2;
+  background: #cbe7f5;
+  padding: 30px;
+  border-radius: 12px;
+  background-image: url(/assets/images/plan-img.png) ;
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: 350px;
+}
+
+
+.plan-left .sub-heading {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.plan-left .choose {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.reserve-form {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  flex-wrap: wrap;
+  max-width: 300px;
+}
+
+.reserve-form .form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-actions {
+  margin-top: 10px;
+}
+
+.reserve-form label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.reserve-form input {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+}
+
+.reserve-form button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #3498db, #2980b9);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 300px;
+}
+
+.reserve-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(52, 152, 219, 0.3);
+}
+
+#reserveBtn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#reserveBtn:hover {
+  background: #333;
+}
+
+.plan-right {
+  flex: 1;
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  height:354px
+}
+
+.plan-right h3 {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.plan-right i{
+  margin: 20px;
+}
+
+.plan-right ul {
+  list-style:none;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.plan-right li {
+  margin-bottom: 10px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.plan-right .terms {
+  font-size: 15px;
+  color: #0077cc;
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .plan-container {
+    flex-direction: column;
+  }
+
+  .reserve-form {
+    flex-direction: column;
+  }
+}
+
+
+/* Group Ride Section */
+.group-ride {
+  padding: 60px 80px 20px;
+  background: #fff;
+}
+
+.group-ride-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.group-ride-image {
+  flex: 1;
+}
+
+.group-ride-image img {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 12px;
+  padding:0px 0px 0px 50px;
+}
+
+.group-ride-text {
+  flex: 1;
+  padding-right: 30px;
+}
+
+.group-ride-text h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.group-ride-text p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.group-ride-text .learn-more {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #000;
+  text-decoration: none;
+  border-bottom: 2px solid #000;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.group-ride-text .learn-more:hover {
+  color: #007bff;
+  border-color: #007bff;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .group-ride-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .group-ride-image img {
+    max-width: 100%;
+  }
+}
+
+/* Ride Info Section */
+.ride-info {
+  padding: 60px 80px;
+  background: #fff;
+}
+
+.ride-info-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.ride-info h1{
+  padding-bottom: 20px;
+}
+
+.ride-card {
+  flex: 1;
+  min-width: 280px;
+  max-width: 360px;
+  text-align: left;
+}
+
+.ride-card img {
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.ride-card h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.ride-card p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+}
+
+.ride-card a {
+  color: #007bff;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.ride-card a:hover {
+  border-color: #007bff;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .ride-info-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .ride-card {
+    max-width: 100%;
+  }
+}
+

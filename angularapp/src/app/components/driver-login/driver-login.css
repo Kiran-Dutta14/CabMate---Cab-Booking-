@@ -1,0 +1,12 @@
+/* Container flex for both fields */
+.password-flex {
+  display: flex;
+  gap: 20px;             /* space between password & confirm password */
+  
+}
+
+/* Each field should take equal width */
+.password-field {
+  flex: 1;
+}
+

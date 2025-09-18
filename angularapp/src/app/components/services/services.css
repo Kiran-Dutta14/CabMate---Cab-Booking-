@@ -1,0 +1,241 @@
+/* ===== Slideshow Container ===== */
+.slideshow {
+  position: relative;
+  max-width: 100%;
+  height: 500px;
+  margin: 20px auto;
+  overflow: hidden;
+}
+
+.slideshow-container {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.slides-container {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  min-width: 100%;
+  position: relative;
+  overflow: hidden;
+  padding:20px;
+}
+
+.slide img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.4s ease;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+/* ===== Overlay Text ===== */
+.slide-text {
+  position: absolute;
+  bottom: 50px;
+  left: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-size: 18px;
+  font-family: Georgia, serif;
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+/* ===== Hover Effect ===== */
+.slide:hover img {
+  opacity: 0.6;
+}
+
+.slide:hover .slide-text {
+  opacity: 1;
+}
+
+/* Navigation Buttons */
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 24px;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.5s ease;
+}
+
+.prev:hover, .next:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.prev {
+  left: 15px;
+}
+
+.next {
+  right: 15px;
+}
+
+/* ===== Responsive (Mobile) ===== */
+@media (max-width: 600px) {
+  .slide img {
+    height: 250px; /* Smaller height */
+  }
+
+  .slide-text {
+    font-size: 0.9rem;  /* Smaller text */
+    padding: 6px 10px;
+    bottom: 10px;
+    left: 10px;
+  }
+}
+
+/* Servies */
+
+.services {
+  padding: 60px 10%;
+  text-align: left;
+}
+
+.services h2 {
+  font-size: 40px;
+  margin-bottom: 40px;
+  font-family: "Trirong", serif;
+}
+
+.service-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.service-card {
+  background: #f1f0f0;
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.service-text {
+  flex: 1;
+  font-family: Georgia, serif;
+}
+
+.service-text p{
+  font-size: 13px;
+}
+
+.service-card img {
+  width: 100px;
+  height: auto;
+}
+
+.details-btn {
+  margin-top: 10px;
+  padding: 8px 15px;
+  border: none;
+  background: #000;
+  color: #fff;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.details-btn:hover {
+  background: #ff6200;
+}
+
+
+/* Login Promo Section */
+.login-promo {
+  display: flex;
+  align-items: center; 
+  justify-content: space-between;
+  gap: 40px;
+  margin: 40px 10%;
+  padding: 20px;
+}
+
+.login-text {
+  flex: 1;
+}
+
+.login-text h2 {
+  font-size: 40px;
+  margin-bottom: 20px; 
+  margin-top: 0px;
+  font-family: "Trirong", serif; 
+}
+
+.login-text p {
+  margin-bottom: 40px;
+  font-size: 1.1rem;
+  color: #333;
+  font-family: Georgia, serif;
+}
+
+.login-buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.login-buttons a {
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn-black {
+  background: black;
+  color: white;
+}
+
+.btn-black:hover {
+  background: #333;
+}
+
+.btn-link {
+  color: black;
+  border-bottom: 2px solid black;
+}
+
+.login-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.login-image img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+@media (max-width: 900px) {
+  .login-promo {
+    flex-direction: column;
+    text-align: center;
+  }
+  .login-buttons {
+    justify-content: center;
+  }
+}

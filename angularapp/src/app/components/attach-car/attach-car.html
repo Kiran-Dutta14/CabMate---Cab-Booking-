@@ -1,0 +1,68 @@
+<section class="cab-driver-section">
+  <h1>Drive to fulfil your dreams</h1>
+
+  <div class="cab-driver-container">
+    
+    <!-- Left: Registration Form -->
+    <div class="form-box">
+      <h2>🚖 For Cab Drivers</h2>
+      <p style="color: #333;">
+        Enter the details below to register yourself.  
+        Our team will contact you in the next 24 hours.
+      </p>
+
+      <form (ngSubmit)="onSubmit()" #cabDriverForm="ngForm">
+        <label for="name">Name</label>
+        <input type="text" [(ngModel)]="driver.name" name="name" placeholder="Enter Your Full Name" required>
+
+        <label for="phone">Phone</label>
+        <input type="tel" [(ngModel)]="driver.phone" name="phone" placeholder="Enter Your Phone Number" required>
+
+        <label for="city">City</label>
+        <select [(ngModel)]="driver.city" name="city" required>
+          <option value="">Select City</option>
+          <option>Bangalore</option>
+          <option>Chennai</option>
+          <option>Hyderabad</option>
+          <option>Mumbai</option>
+          <option>Delhi</option>
+        </select>
+
+        <button type="submit" class="btn submit-btn">Submit Your Application</button>
+      </form>
+    </div>
+
+    <!-- Right: Documents Required -->
+    <div class="documents-box">
+      <h2>📑 Documents Required</h2>
+
+      <div class="doc-section">
+        <h4>Owner Documents</h4>
+        <ul>
+          <li>PAN Card</li>
+          <li>Cancelled Cheque or Passbook</li>
+          <li>Aadhaar Card</li>
+          <li>Address Proof</li>
+        </ul>
+      </div>
+
+      <div class="doc-section">
+        <h4>Car Documents</h4>
+        <ul>
+          <li>Vehicle RC</li>
+          <li>Vehicle Permit</li>
+          <li>Vehicle Insurance</li>
+        </ul>
+      </div>
+
+      <div class="doc-section">
+        <h4>Driver Documents</h4>
+        <ul>
+          <li>Driving License</li>
+          <li>Aadhaar Card</li>
+          <li>Address Proof</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

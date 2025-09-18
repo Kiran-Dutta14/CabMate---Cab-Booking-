@@ -1,0 +1,29 @@
+/* Container flex for both fields */
+.password-flex {
+  display: flex;
+  gap: 20px;             /* space between password & confirm password */
+  justify-content: space-between;
+}
+
+/* Each field should take equal width */
+.password-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Make sure input + button align properly */
+.password-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  flex: 1;
+}
+
+.password-wrapper button {
+  margin-left: 8px;
+  cursor: pointer;
+}
+

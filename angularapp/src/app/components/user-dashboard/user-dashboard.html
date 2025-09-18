@@ -1,0 +1,82 @@
+<header class="navbar">
+  <div class="logo"><img src="/assets/images/logo2.png"></div>
+  <nav class="nav-links">
+    <a href="/user-dashboard">Ride</a>
+    <a href="#">Rental</a>
+    <a href="#">Courier</a>
+  </nav>
+
+  <div class="profile-menu">
+    <button id="profileBtn" class="profile-btn" (click)="toggleDropdown()">
+      👤 <span>{{ firstName }}</span> ▼
+    </button>
+
+    <div class="dropdown" *ngIf="dropdownOpen">
+      <div class="dropdown-header">
+        <p>{{ user.name }}</p>
+        <small>{{ user.email }}</small>
+      </div>
+
+      <button class="dropdown-btn">View activity</button>
+
+      <div class="dropdown-actions">
+        <button>Help</button>
+        <button>Statements</button>
+        <button>Activity</button>
+      </div>
+
+      <ul class="dropdown-links">
+        <li>Manage account</li>
+        <li>Ride</li>
+        <li>Drive & Deliver</li>
+        <li>Support</li>
+      </ul>
+
+      <button class="signout-btn" (click)="logout()">Sign Out</button>
+    </div>
+  </div>
+</header>
+
+<!-- Dashboard Content -->
+<main class="dashboard">
+  <h1>Welcome back, {{ user.name }}!</h1>
+  <p>Complete your next step to get even closer to enjoying rides with CabMate.</p>
+
+  <div class="cards">
+    <div class="card">
+      <img src="assets/images/user2.jpeg" alt="Ride" />
+      <h3>Earn on your own schedule.</h3>
+      <button>Book a Ride</button>
+    </div>
+
+    <div class="card">
+      <img src="assets/images/user1.png" alt="Drive" />
+      <h3>Drive when you want, make what you need.</h3>
+    </div>
+  </div>
+</main>
+
+<!-- Ride Request Section -->
+<section class="ride-section">
+  <div class="ride-form">
+    <h2>Get a ride</h2>
+
+    <input type="text" class="input-icon1" [(ngModel)]="pickup" placeholder="Pickup location" />
+    <input type="text" class="input-icon2" [(ngModel)]="dropoff" placeholder="Dropoff location" />
+
+    <select [(ngModel)]="pickupTime">
+      <option>Pickup now</option>
+      <option>Schedule for later</option>
+    </select>
+
+    <select [(ngModel)]="riderType">
+      <option>For me</option>
+      <option>For someone else</option>
+    </select>
+
+    <button (click)="searchRide()">Search</button>
+  </div>
+
+  <!-- Google Map -->
+  <div id="map"></div>
+</section>
