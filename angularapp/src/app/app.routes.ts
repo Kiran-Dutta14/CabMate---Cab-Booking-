@@ -11,6 +11,7 @@ import { DriverLogin } from './components/driver-login/driver-login';
 import { Signin } from './components/signin/signin';
 import { AttachCar } from './components/attach-car/attach-car';
 import { UserDashboard } from './components/user-dashboard/user-dashboard';
+import { DriverDashboard } from './components/driver-dashboard/driver-dashboard';
 
 //Admin Components
 import { AdminLogin } from './components/admin/admin-login/admin-login';
@@ -27,6 +28,8 @@ export const routes: Routes = [
   { path: 'signin', component: Signin },
   { path: 'attach-car', component: AttachCar},
   { path: 'user-dashboard', component: UserDashboard },
+  { path: 'driver-dashboard', component: DriverDashboard },
+
   
   // 🔹 Admin Routes
   { path: 'admin/login', component: AdminLogin },

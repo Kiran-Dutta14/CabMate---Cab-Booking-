@@ -1,0 +1,105 @@
+<div class="container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-icon">CB</div>
+      <div class="logo-text">CabBooking Pro</div>
+    </div>
+
+    <nav class="nav-menu">
+      <a routerLink="/driver-dashboard" routerLinkActive="active" class="nav-item active">
+        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" ...></svg>
+        Dashboard
+      </a>
+      <a href="#" class="nav-item">Ride History</a>
+      <a href="#" class="nav-item">Messages</a>
+      <a href="#" class="nav-item">Earnings</a>
+      <a href="#" class="nav-item">Settings</a>
+    </nav>
+
+    <div class="driver-card">
+      <div class="driver-info">
+        <div class="driver-avatar">{{ driver.initials }}</div>
+        <div class="driver-details">
+          <h3>{{ driver.name }}</h3>
+          <p>{{ driver.car }} • {{ driver.plate }}</p>
+          <div class="rating">
+            <svg class="star" xmlns="http://www.w3.org/2000/svg" ...></svg>
+            <span>{{ driver.rating }}</span>
+          </div>
+        </div>
+      </div>
+      <div class="online-status" (click)="toggleOnline()">
+        {{ online ? 'Go Offline' : 'Go Online' }}
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="header">
+      <h1>Driver Dashboard</h1>
+      <div>{{ today | date: 'fullDate' }}</div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-title">Today's Earnings</div>
+        <div class="stat-value">${{ stats.earnings }}</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Completed Rides</div>
+        <div class="stat-value">{{ stats.completedRides }}</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-title">Rating</div>
+        <div class="stat-value">{{ driver.rating }}</div>
+      </div>
+    </div>
+
+    <!-- Map + Ride Requests -->
+    <div class="dashboard-content">
+      <div class="map-container">
+        <div id="map"></div>
+
+        <div class="ride-request" [class.active]="rideRequestVisible">
+          <div class="ride-details">
+            <div class="ride-locations">
+              <div class="location">
+                <div class="location-dot pickup-dot"></div>
+                <div class="location-text">123 Main Street, Downtown</div>
+              </div>
+              <div class="location">
+                <div class="location-dot dropoff-dot"></div>
+                <div class="location-text">456 Park Avenue, Uptown</div>
+              </div>
+            </div>
+            <div class="ride-info">
+              <div>Distance: <span>2.3 miles</span></div>
+              <div>Fare: <span>$12.50</span></div>
+            </div>
+          </div>
+          <div class="ride-actions">
+            <button class="btn btn-outline" (click)="declineRide()">Decline</button>
+            <button class="btn btn-primary" (click)="acceptRide()">Accept</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Rides -->
+      <div class="panel">
+        <div class="panel-header">Recent Rides</div>
+        <div class="panel-content">
+          <ul class="ride-history">
+            <li class="ride-item" *ngFor="let ride of recentRides">
+              <div class="ride-date">{{ ride.date }}</div>
+              <div class="ride-route">{{ ride.route }}</div>
+              <div class="ride-earnings">${{ ride.earnings }}</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
