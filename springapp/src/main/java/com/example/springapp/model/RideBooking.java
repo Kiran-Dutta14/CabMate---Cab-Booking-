@@ -15,7 +15,7 @@ public class RideBooking {
     private Long id;
 
     private String pickupLocation;
-    private String dropLocation;
+    private String dropoffLocation;
     private LocalDateTime rideTime;
     private Double fare;
     private String status; // e.g. BOOKED, ONGOING, COMPLETED, CANCELLED

@@ -36,8 +36,10 @@ export class UserService {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 
-  // ✅ Login user (backend expects phone + password)
-  login(phone: string, password: string): Observable<User> {
-    return this.http.post<User>(`${this.baseUrl}/login`, { phone, password });
+  login(identifier: string, password: string): Observable<User> {
+    return this.http.post<User>(`${this.baseUrl}/login`, {
+      identifier: identifier,   // ✅ matches backend DTO
+      password: password
+    });
   }
 }

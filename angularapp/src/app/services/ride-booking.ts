@@ -9,25 +9,30 @@ import { RideBooking } from '../models/ride-booking.model';
 export class RideBookingService {
   private baseUrl = 'http://localhost:8080/api/rides';
 
-  constructor(private http: HttpClient) {}
+constructor(private http: HttpClient) {}
 
-  getAll(): Observable<RideBooking[]> {
-    return this.http.get<RideBooking[]>(`${this.baseUrl}`);
+  // get rides for a driver
+  getRidesByDriver(driverId: number): Observable<RideBooking[]> {
+    return this.http.get<RideBooking[]>(`${this.baseUrl}/driver/${driverId}`);
   }
 
-  getById(id: number): Observable<RideBooking> {
-    return this.http.get<RideBooking>(`${this.baseUrl}/${id}`);
+  // get rides for a user
+  getRidesByUser(userId: number): Observable<RideBooking[]> {
+    return this.http.get<RideBooking[]>(`${this.baseUrl}/user/${userId}`);
   }
 
-  create(ride: RideBooking): Observable<RideBooking> {
-    return this.http.post<RideBooking>(`${this.baseUrl}`, ride);
+  // create/request a ride
+  requestRide(payload: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/rides`, payload);
   }
 
-  update(id: number, ride: RideBooking): Observable<RideBooking> {
-    return this.http.put<RideBooking>(`${this.baseUrl}/${id}`, ride);
+  // search available drivers (example)
+  searchRides(query: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/rides/search`, query);
   }
 
-  delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  // optionally set driver online/offline
+  setDriverOnline(driverId: number, online: boolean): Observable<any> {
+    return this.http.patch(`${this.baseUrl}/drivers/${driverId}/online`, { online });
   }
 }

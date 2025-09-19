@@ -1,3 +1,4 @@
+// src/app/admin/admin-dashboard.ts
 import { Component, AfterViewInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 
@@ -5,9 +6,9 @@ Chart.register(...registerables);
 
 @Component({
   selector: 'app-admin-dashboard',
-  imports: [],
+  // If standalone: add imports as needed
   templateUrl: './admin-dashboard.html',
-  styleUrl: './admin-dashboard.css'
+  styleUrls: ['./admin-dashboard.css']
 })
 export class AdminDashboard implements AfterViewInit {
   ngAfterViewInit(): void {
@@ -16,19 +17,19 @@ export class AdminDashboard implements AfterViewInit {
   }
 
   loadMonthlyChart() {
-    new Chart("monthlyChart", {
+    new Chart('monthlyChart', {
       type: 'line',
       data: {
-        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
         datasets: [{
-          label: "Rides",
+          label: 'Rides',
           data: [50, 75, 60, 90, 120, 100, 140, 160],
-          borderColor: "#2563eb",
-          backgroundColor: "rgba(37, 99, 235, 0.2)",
+          borderColor: '#2563eb',
+          backgroundColor: 'rgba(37, 99, 235, 0.2)',
           tension: 0.4,
           fill: true,
           pointRadius: 5,
-          pointBackgroundColor: "#2563eb"
+          pointBackgroundColor: '#2563eb'
         }]
       },
       options: {
@@ -41,13 +42,13 @@ export class AdminDashboard implements AfterViewInit {
   }
 
   loadStatusChart() {
-    new Chart("statusChart", {
+    new Chart('statusChart', {
       type: 'doughnut',
       data: {
-        labels: ["Completed", "In Progress", "Open"],
+        labels: ['Completed', 'In Progress', 'Open'],
         datasets: [{
           data: [65, 25, 10],
-          backgroundColor: ["#16a34a", "#0284c7", "#dc2626"],
+          backgroundColor: ['#16a34a', '#0284c7', '#dc2626'],
           borderWidth: 0
         }]
       },
@@ -55,11 +56,11 @@ export class AdminDashboard implements AfterViewInit {
         responsive: true,
         plugins: {
           legend: {
-            position: "bottom",
+            position: 'bottom',
             labels: { boxWidth: 15 }
           }
         },
-        cutout: "70%"  // donut style
+        cutout: '70%'
       }
     });
   }

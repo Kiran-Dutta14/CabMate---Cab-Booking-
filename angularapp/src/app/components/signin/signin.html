@@ -2,17 +2,39 @@
   <div class="auth-card">
     <h1>Sign In</h1>
     <form (ngSubmit)="onSignin()" #signinForm="ngForm">
-      <div class="form-group">
-        <label>Phone No</label>
-        <input type="tel" [(ngModel)]="signin.phone" name="phone" placeholder="Enter phone number" required>
+
+      <!-- Role Selection as Buttons -->
+      <div class="form-group role-buttons">
+        <label>Login as</label>
+        <div class="role-selector">
+          <button type="button"
+                  [class.active]="role === 'user'"
+                  (click)="role = 'user'">
+            User
+          </button>
+          <button type="button"
+                  [class.active]="role === 'driver'"
+                  (click)="role = 'driver'">
+            Driver
+          </button>
+        </div>
       </div>
+
+      <!-- Phone/Email -->
+      <div class="form-group">
+        <label>Phone No / Email</label>
+        <input type="text" [(ngModel)]="signin.emailOrPhone" name="emailOrPhone" placeholder="Enter phone or email" required>
+      </div>
+
       <div class="form-group">
         <label>Password</label>
         <div class="password-wrapper">
           <input [type]="showSigninPassword ? 'text' : 'password'" [(ngModel)]="signin.password" name="password" placeholder="Enter your password" required>
         </div>
       </div>
+
       <button type="submit" class="btn primary signin">Sign In</button>
+     
       <p class="signin-note">
         Don’t have an account?  <a routerLink="/login-user">Create one here</a>
       </p>

@@ -2,30 +2,29 @@
   <!-- Sidebar -->
   <aside class="sidebar">
     <div class="logo">
-      <div class="logo-icon">CB</div>
-      <div class="logo-text">CabBooking Pro</div>
+      <div class="logo-icon">CM</div>
+      <div class="logo-text">CabMate</div>
     </div>
 
     <nav class="nav-menu">
       <a routerLink="/driver-dashboard" routerLinkActive="active" class="nav-item active">
-        <svg class="nav-icon" xmlns="http://www.w3.org/2000/svg" ...></svg>
-        Dashboard
+        <img src="assets/images/dashboard2.png" > Dashboard
       </a>
-      <a href="#" class="nav-item">Ride History</a>
-      <a href="#" class="nav-item">Messages</a>
-      <a href="#" class="nav-item">Earnings</a>
-      <a href="#" class="nav-item">Settings</a>
+      <a href="#" class="nav-item"><img src="assets/images/history.png" > Ride History</a>
+      <a href="#" class="nav-item"><img src="assets/images/chat.png" > Messages</a>
+      <a href="#" class="nav-item"><img src="assets/images/earnings.png" > Earnings</a>
+      <a href="#" class="nav-item"><img src="assets/images/settings.png" > Settings</a>
     </nav>
 
-    <div class="driver-card">
+    <div class="driver-card" *ngIf="driver">
       <div class="driver-info">
-        <div class="driver-avatar">{{ driver.initials }}</div>
+        <div class="driver-avatar">{{ driver.initials || 'D' }}</div>
         <div class="driver-details">
-          <h3>{{ driver.name }}</h3>
-          <p>{{ driver.car }} • {{ driver.plate }}</p>
+          <h3>{{ driver.name || 'Driver' }}</h3>
+          <p>{{ driver.car || 'Unknown Car' }} • {{ driver.plate || 'N/A' }}</p>
           <div class="rating">
-            <svg class="star" xmlns="http://www.w3.org/2000/svg" ...></svg>
-            <span>{{ driver.rating }}</span>
+            <img src="assets/images/star.png" >
+            <span>{{ driver.rating || 0 }}</span>
           </div>
         </div>
       </div>
@@ -45,16 +44,16 @@
     <!-- Stats -->
     <div class="stats-grid">
       <div class="stat-card">
-        <div class="stat-title">Today's Earnings</div>
+        <div class="stat-title"><img src="assets/images/earning2.png" >Today's Earnings</div>
         <div class="stat-value">${{ stats.earnings }}</div>
       </div>
       <div class="stat-card">
-        <div class="stat-title">Completed Rides</div>
+        <div class="stat-title"><img src="assets/images/car-insurance.png" >Completed Rides</div>
         <div class="stat-value">{{ stats.completedRides }}</div>
       </div>
       <div class="stat-card">
-        <div class="stat-title">Rating</div>
-        <div class="stat-value">{{ driver.rating }}</div>
+        <div class="stat-title"><img src="assets/images/rating.png" >Rating</div>
+        <div class="stat-value">{{ driver.rating || 0 }}</div>
       </div>
     </div>
 
@@ -68,16 +67,16 @@
             <div class="ride-locations">
               <div class="location">
                 <div class="location-dot pickup-dot"></div>
-                <div class="location-text">123 Main Street, Downtown</div>
+                <div class="location-text">{{ driver.lastPickup || 'Pickup Location' }}</div>
               </div>
               <div class="location">
                 <div class="location-dot dropoff-dot"></div>
-                <div class="location-text">456 Park Avenue, Uptown</div>
+                <div class="location-text">{{ driver.lastDropoff || 'Dropoff Location' }}</div>
               </div>
             </div>
             <div class="ride-info">
-              <div>Distance: <span>2.3 miles</span></div>
-              <div>Fare: <span>$12.50</span></div>
+              <div>Distance: <span>-- km</span></div>
+              <div>Fare: <span>₹ --</span></div>
             </div>
           </div>
           <div class="ride-actions">
@@ -91,15 +90,31 @@
       <div class="panel">
         <div class="panel-header">Recent Rides</div>
         <div class="panel-content">
-          <ul class="ride-history">
+          <ul class="ride-history" *ngIf="recentRides && recentRides.length > 0; else noRides">
             <li class="ride-item" *ngFor="let ride of recentRides">
+             {{ ride.date }} - {{ ride.route }} - ₹{{ ride.earnings }}
+             
+            <!-- 
               <div class="ride-date">{{ ride.date }}</div>
               <div class="ride-route">{{ ride.route }}</div>
-              <div class="ride-earnings">${{ ride.earnings }}</div>
+              <div class="ride-earnings">₹{{ ride.earnings }}</div>
+            -->
+
             </li>
           </ul>
+           <ng-template #noRides>
+            <p class="empty-message">No rides found yet.</p>
+          </ng-template>
         </div>
       </div>
     </div>
   </main>
 </div>
+
+<!-- Fallback when no driver is logged in -->
+<ng-template #noDriver>
+  <div class="empty-dashboard">
+    <h2>No driver logged in</h2>
+    <p>Please <a routerLink="/signin">sign in</a> to view your dashboard.</p>
+  </div>
+</ng-template>

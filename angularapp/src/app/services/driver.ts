@@ -10,25 +10,38 @@ export class DriverService {
 
   private baseUrl = 'http://localhost:8080/api/drivers';  // Backend API URL
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getAll(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl);
+  // ✅ Get all drivers
+  getAll(): Observable<Driver[]> {
+    return this.http.get<Driver[]>(this.baseUrl);
   }
 
-  getById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/${id}`);
+  // ✅ Get driver by ID
+  getById(id: number): Observable<Driver> {
+    return this.http.get<Driver>(`${this.baseUrl}/${id}`);
   }
 
-  create(driver: any): Observable<any> {
-    return this.http.post<any>(this.baseUrl, driver);
+  // ✅ Register a new driver
+  create(driver: Driver): Observable<Driver> {
+    return this.http.post<Driver>(this.baseUrl, driver);
   }
 
-  update(id: number, driver: any): Observable<any> {
-    return this.http.put<any>(`${this.baseUrl}/${id}`, driver);
+  // ✅ Update driver
+  update(id: number, driver: Driver): Observable<Driver> {
+    return this.http.put<Driver>(`${this.baseUrl}/${id}`, driver);
   }
 
+  // ✅ Delete driver
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  }
+
+  // ✅ Login driver (backend expects { identifier, password })
+  login(identifier: string, password: string): Observable<Driver> {
+    return this.http.post<Driver>(`${this.baseUrl}/login`, {
+      identifier: identifier,
+      password: password
+    });
   }
 }

@@ -4,7 +4,7 @@ import { Driver } from './driver.model';
 export interface RideBooking {
   id?: number;               // Optional since it's auto-generated
   pickupLocation: string;
-  dropLocation: string;
+  dropoffLocation: string;
   rideTime: string;          // Use string to represent LocalDateTime
   fare: number;
   status: string;            // BOOKED, ONGOING, COMPLETED, CANCELLED

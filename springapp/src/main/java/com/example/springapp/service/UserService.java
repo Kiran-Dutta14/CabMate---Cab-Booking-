@@ -17,8 +17,13 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public Optional<User> loginUser(String email, String password) {
-        return userRepository.findByEmailAndPassword(email, password);
+    public Optional<User> loginUser(String identifier, String password) {
+    // Try phone first
+        Optional<User> byPhone = userRepository.findByPhoneAndPassword(identifier, password);
+        if (byPhone.isPresent()) return byPhone;
+
+        // Try email as fallback
+        return userRepository.findByEmailAndPassword(identifier, password);
     }
 
     public List<User> getAllUsers() {

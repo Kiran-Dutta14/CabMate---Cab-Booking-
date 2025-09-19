@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../services/user';
+import { DriverService } from '../../services/driver';
 
 @Component({
   selector: 'app-signin',
@@ -12,27 +13,51 @@ import { UserService } from '../../services/user';
   styleUrls: ['./signin.css']
 })
 export class Signin {
-  signin = { phone: '', password: '' };
-  showSigninPassword: boolean = false; // ✅ Fix: add this property
+  signin = { emailOrPhone: '', password: '' };
+  role: 'user' | 'driver' = 'user';   // ✅ default role = user
+  showSigninPassword: boolean = false;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private driverService: DriverService,
+    private router: Router
+  ) {}
 
   togglePassword() {
     this.showSigninPassword = !this.showSigninPassword;
   }
 
   onSignin() {
-    this.userService.login(this.signin.phone, this.signin.password).subscribe({
-      next: (user) => {
-        // Save logged in user in localStorage
-        localStorage.setItem('currentUser', JSON.stringify(user));
-
-        // Redirect to dashboard
-        this.router.navigate(['/user-dashboard']);
-      },
-      error: () => {
-        alert("Invalid phone number or password. Try again.");
-      }
-    });
+    if (this.role === 'user') {
+      // User login
+      this.userService.login(this.signin.emailOrPhone, this.signin.password).subscribe({
+        next: (user) => {
+          if(user) {
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            this.router.navigate(['/user-dashboard']);
+          } else{
+            alert("User not found or wrong password.");
+          }
+        },
+        error: () => {
+          alert("Invalid user credentials.");
+        }
+      });
+    } else if (this.role === 'driver') {
+      // Driver login
+      this.driverService.login(this.signin.emailOrPhone, this.signin.password).subscribe({
+        next: (driver) => {
+          if (driver) {
+            localStorage.setItem('currentDriver', JSON.stringify(driver));
+            this.router.navigate(['/driver-dashboard']);
+          } else {
+            alert("Driver not found or wrong password.");
+          }
+        },
+        error: () => {
+          alert("Invalid driver credentials.");
+        }
+      });
+    }
   }
 }

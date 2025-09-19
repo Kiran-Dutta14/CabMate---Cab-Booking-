@@ -1,7 +1,11 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { RideBookingService } from '../../services/ride-booking';
+import { Driver } from '../../models/driver.model';
+import { RideBooking } from '../../models/ride-booking.model';
 
-declare var google: any;
+declare const google: any;
 
 @Component({
   selector: 'app-driver-dashboard',
@@ -10,95 +14,105 @@ declare var google: any;
   templateUrl: './driver-dashboard.html',
   styleUrls: ['./driver-dashboard.css']
 })
-export class DriverDashboard implements AfterViewInit {
-  today = new Date();
-  online = false;
-  rideRequestVisible = false;
-
-  driver = {
-    name: 'John Driver',
-    initials: 'JD',
-    car: 'Toyota Camry',
-    plate: 'ABC123',
-    rating: 4.92
+export class DriverDashboard implements OnInit, AfterViewInit {
+  driver: Driver | any = {
+    id: null,
+    name: '',
+    licenseNumber: '',
+    rating: 0,
+    initials: ''
   };
 
-  stats = {
-    earnings: 127.50,
-    completedRides: 8
-  };
+  stats = { earnings: 0, completedRides: 0 };
+  today: Date = new Date();
+  online: boolean = false;
+  rideRequestVisible: boolean = false;
+  recentRides: any[] = [];
 
-  recentRides = [
-    { date: 'Today, 10:45 AM', route: 'Downtown to Uptown', earnings: 15.75 },
-    { date: 'Today, 9:30 AM', route: 'Airport to Business District', earnings: 28.50 },
-    { date: 'Today, 8:15 AM', route: 'Suburbs to City Center', earnings: 22.30 },
-    { date: 'Yesterday, 7:05 PM', route: 'Mall to Residential', earnings: 14.20 },
-    { date: 'Yesterday, 5:40 PM', route: 'Office to Train Station', earnings: 9.85 },
-  ];
+  constructor(
+    private router: Router,
+    private rideBookingService: RideBookingService
+  ) {}
 
-  ngAfterViewInit() {
-    this.initMap();
+  ngOnInit(): void {
+    const storedDriver = localStorage.getItem('currentDriver');
+    if (storedDriver) {
+      this.driver = JSON.parse(storedDriver);
+
+      // Driver initials for avatar
+      this.driver.initials = this.driver.name
+        ? this.driver.name.split(' ').map((n: string) => n[0]).join('').toUpperCase()
+        : 'DR';
+
+      // ✅ Fetch ride history for logged-in driver
+      if (this.driver.id != null) {
+        this.rideBookingService.getRidesByDriver(this.driver.id).subscribe({
+          next: (rides: any[]) => {
+            console.log("Fetched rides from backend:", rides);
+            
+            this.recentRides = rides.map((r: any) => ({
+              date: r.rideTime ? new Date(r.rideTime).toLocaleString() : '—',
+              route: `${r.pickupLocation ?? '—'} → ${r.dropoffLocation ?? '—'}`,
+              earnings: r.fare ?? 0
+            }));
+
+            // ✅ Calculate stats
+            this.stats.completedRides = this.recentRides.length;
+            this.stats.earnings = this.recentRides.reduce(
+              (sum, r) => sum + (r.earnings || 0),
+              0
+            );
+          },
+          error: (err) => {
+            console.error('Error fetching rides:', err);
+            this.recentRides = [];
+          }
+        });
+      }
+    } else {
+      // If no driver found, redirect back to signin
+      this.router.navigate(['/signin']);
+    }
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => this.loadMap(), 0);
   }
 
   toggleOnline() {
     this.online = !this.online;
-    if (this.online) {
-      this.initMap();
-    }
+    // Example: notify backend about status
+    // this.rideBookingService.setDriverStatus(this.driver.id, this.online).subscribe();
   }
 
   acceptRide() {
-    alert('Ride accepted! Navigating to pickup location...');
     this.rideRequestVisible = false;
+    alert('Ride accepted!');
   }
 
   declineRide() {
     this.rideRequestVisible = false;
-    setTimeout(() => this.rideRequestVisible = true, 5000);
+    alert('Ride declined!');
   }
 
-  private initMap() {
-    const defaultLocation = { lat: 40.7128, lng: -74.0060 }; // NYC
+  private loadMap() {
+    const mapElement = document.getElementById('map');
+    if (!mapElement) return;
 
-    const map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 14,
-      center: defaultLocation
+    if (typeof google === 'undefined') {
+      console.warn('Google Maps API not loaded.');
+      return;
+    }
+
+    const map = new google.maps.Map(mapElement, {
+      center: { lat: 28.6139, lng: 77.2090 }, // Default center (Delhi)
+      zoom: 12
     });
 
-    // Driver marker
     new google.maps.Marker({
-      position: defaultLocation,
+      position: { lat: 28.6139, lng: 77.2090 },
       map,
-      title: 'Your Location',
-      icon: {
-        path: google.maps.SymbolPath.CIRCLE,
-        scale: 10,
-        fillColor: '#14b8a6',
-        fillOpacity: 1,
-        strokeColor: '#ffffff',
-        strokeWeight: 2
-      }
+      title: 'Driver Location'
     });
-
-    // Show ride request after 3 sec
-    setTimeout(() => {
-      this.rideRequestVisible = true;
-
-      const pickup = new google.maps.LatLng(defaultLocation.lat + 0.01, defaultLocation.lng + 0.01);
-      const dropoff = new google.maps.LatLng(defaultLocation.lat + 0.02, defaultLocation.lng + 0.02);
-
-      new google.maps.Marker({ position: pickup, map, title: 'Pickup' });
-      new google.maps.Marker({ position: dropoff, map, title: 'Dropoff' });
-
-      const route = new google.maps.Polyline({
-        path: [pickup, dropoff],
-        geodesic: true,
-        strokeColor: '#14b8a6',
-        strokeOpacity: 1.0,
-        strokeWeight: 3
-      });
-
-      route.setMap(map);
-    }, 3000);
   }
 }

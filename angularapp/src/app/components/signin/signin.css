@@ -5,3 +5,29 @@
 .signin-note {
     text-align: center;
 }
+
+.role-selector {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.role-selector button {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  background: #f8f8f8;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: 0.2s;
+}
+
+.role-selector button:hover {
+  background: #eee;
+}
+
+.role-selector button.active {
+  background: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
