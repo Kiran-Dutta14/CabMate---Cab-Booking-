@@ -1,0 +1,104 @@
+<div class="dashboard">
+  <!-- Sidebar -->
+  <app-sidebar></app-sidebar>
+
+  <!-- Right Content -->
+  <div class="main-content">
+    <div class="navbar">
+      <h3>Fares & Rides</h3>
+    </div>
+
+    <!-- Revenue Cards -->
+    <div class="cards">
+      <div class="card">
+        <h4>Total Revenue</h4>
+        <p class="amount">$90.50</p>
+        <small>+12.5% from last month</small>
+      </div>
+      <div class="card">
+        <h4>Average Fare</h4>
+        <p class="amount">$45.25</p>
+        <small>Per completed ride</small>
+      </div>
+      <div class="card">
+        <h4>Total Rides</h4>
+        <p class="amount">3</p>
+        <small>All time bookings</small>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button [class.active]="activeTab === 'fare-rules'" (click)="activeTab='fare-rules'">Fare Rules</button>
+      <button [class.active]="activeTab === 'ride-history'" (click)="activeTab='ride-history'">Ride History</button>
+    </div>
+
+    <!-- Fare Rules Table -->
+    <div *ngIf="activeTab === 'fare-rules'" class="table">
+      <div class="header">
+        <h2>Fare Rules</h2>
+        <p>Configure pricing for different vehicle types</p>
+        <button class="add-btn">+ Add Fare Rule</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Rule Name</th>
+            <th>Vehicle Type</th>
+            <th>Base Fare</th>
+            <th>Per KM</th>
+            <th>Per Minute</th>
+            <th>Min Fare</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let f of fareRules">
+            <td>{{ f.ruleName }}</td>
+            <td><span class="badge type">{{ f.vehicleType }}</span></td>
+            <td>\${{ f.baseFare }}</td>
+            <td>\${{ f.perKm }}</td>
+            <td>\${{ f.perMinute }}</td>
+            <td>\${{ f.minFare }}</td>
+            <td><span class="badge status active">{{ f.status }}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Ride History Table -->
+    <div *ngIf="activeTab === 'ride-history'" class="table">
+      <div class="header">
+        <h2>Ride History</h2>
+        <p>View all completed and ongoing rides</p>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Customer</th>
+            <th>Route</th>
+            <th>Distance</th>
+            <th>Fare</th>
+            <th>Payment</th>
+            <th>Status</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let r of rides">
+            <td>
+              <strong>{{ r.customer }}</strong><br>
+              <span class="email">{{ r.contact }}</span>
+            </td>
+            <td>{{ r.route }}</td>
+            <td>{{ r.distance }}</td>
+            <td>\${{ r.fare }}</td>
+            <td><span class="badge type">{{ r.payment }}</span></td>
+            <td><span class="badge status" [ngClass]="r.status">{{ r.status }}</span></td>
+            <td>{{ r.date }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

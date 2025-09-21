@@ -1,0 +1,51 @@
+<div class = "dashboard">    
+    <!-- Sidebar (shared across all admin pages) -->
+  <app-sidebar></app-sidebar>
+
+  <!-- Right content -->
+  <div class="main-content">
+    
+    <div class="navbar">
+        <h3>Users</h3>
+        </div>
+        
+        <div class="management">
+        <div class="header">
+          <div>
+            <h2>User Management</h2>
+            <p>Manage customer accounts and permissions</p>
+          </div>
+          <span class="total-users">👤 {{ users.length }} Total Users</span>
+        </div>
+
+        <div class="filters">
+            <input type="text" placeholder="Search users by name or email..." [(ngModel)]="searchTerm">
+        </div>
+
+        <div class="table">
+            <table>
+            <thead>
+                <tr>
+                <th>User</th>
+                <th>Email</th>
+                <th>Phone_no</th>
+                <th>Joined</th>
+                <th>Last Active</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let u of filteredUsers()">
+                    <td>
+                        <strong>{{ u.name }}</strong><br>
+                    </td>
+                    <td>{{ u.email }}</td>
+                    <td>{{ u.phone }}</td>
+                    <td>{{ u.joined }}</td>
+                    <td>{{ u.lastActive }}</td>
+                </tr>
+            </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+</div>

@@ -1,0 +1,136 @@
+.dashboard {
+  display: flex;
+  height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px 25px;
+  overflow-y: auto;
+}
+
+.navbar {
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.navbar h3 {
+  font-size: 25px;
+  font-weight: 600;
+  color: #fafcff;
+  padding: 5px;
+  margin: 5px;
+}
+
+.cards {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  flex: 1;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.card h4 {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.card .amount {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.tabs {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.tabs button {
+  padding: 10px 20px;
+  border: none;
+  background: #e5e7eb;
+  cursor: pointer;
+  border-radius: 6px 6px 0 0;
+}
+
+.tabs button.active {
+  background: #2563eb;
+  color: #fff;
+}
+
+.table {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  padding: 15px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.header h2 {
+  font-size: 18px;
+}
+
+.add-btn {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f3f4f6;
+  text-align: left;
+}
+
+th, td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.badge.type {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.badge.status.active {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.badge.status.completed {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.badge.status.in_progress {
+  background: #e0e7ff;
+  color: #4338ca;
+}

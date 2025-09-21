@@ -86,12 +86,12 @@ export class DriverDashboard implements OnInit, AfterViewInit {
   }
 
   acceptRide() {
-    this.rideRequestVisible = false;
+    this.rideRequestVisible = true;
     alert('Ride accepted!');
   }
 
   declineRide() {
-    this.rideRequestVisible = false;
+    this.rideRequestVisible = true;
     alert('Ride declined!');
   }
 
@@ -105,12 +105,12 @@ export class DriverDashboard implements OnInit, AfterViewInit {
     }
 
     const map = new google.maps.Map(mapElement, {
-      center: { lat: 28.6139, lng: 77.2090 }, // Default center (Delhi)
+      center: { lat: 12.9716, lng: 77.5946 }, // Default center (Bangalore)
       zoom: 12
     });
 
     new google.maps.Marker({
-      position: { lat: 28.6139, lng: 77.2090 },
+      position: { lat: 12.9716, lng: 77.5946 },
       map,
       title: 'Driver Location'
     });

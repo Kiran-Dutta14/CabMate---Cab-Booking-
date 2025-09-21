@@ -23,7 +23,7 @@ export class AppComponent {
 
   // check if current route is admin
   hideNavbar() {
-  const hiddenRoutes = ['/admin/login', '/admin/dashboard', '/user-dashboard', '/driver-dashboard']; // add more here
+  const hiddenRoutes = ['/admin/login', '/admin/dashboard', '/admin/drivers', '/admin/users', '/admin/vehicles', '/admin/fares', '/admin/support', '/user-dashboard', '/driver-dashboard']; // add more here
   return hiddenRoutes.includes(this.router.url);
   }
 

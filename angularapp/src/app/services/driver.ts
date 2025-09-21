@@ -44,4 +44,14 @@ export class DriverService {
       password: password
     });
   }
+
+  // Get total count of drivers (for admin dashboard metrics)
+  getCount(): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/count`);
+  }
+
+  // Get drivers filtered by status ("Active" / "Suspended")
+  getByStatus(status: string): Observable<Driver[]> {
+    return this.http.get<Driver[]>(`${this.baseUrl}/status/${status}`);
+  }
 }

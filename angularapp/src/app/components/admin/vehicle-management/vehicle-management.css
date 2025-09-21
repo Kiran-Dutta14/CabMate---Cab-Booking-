@@ -1,0 +1,322 @@
+.dashboard {
+  display: flex;
+  height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px 25px;
+  overflow-y: auto;
+}
+
+.navbar {
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.navbar h3 {
+  font-size: 25px;
+  font-weight: 600;
+  color: #fafcff;
+  padding: 5px;
+  margin: 5px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.header h2 {
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+.add-btn {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.filters {
+  margin: 20px 0;
+  display: flex;
+  gap: 15px;
+}
+
+.filters input,
+.filters select {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.table {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f3f4f6;
+  text-align: left;
+}
+
+th, td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+
+.vehicle-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  text-transform: capitalize;
+}
+
+.badge.license {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.badge.type {
+  background: #ede9fe;
+  color: #5b21b6;
+}
+
+.badge.active {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.badge.maintenance {
+  background: #fef9c3;
+  color: #ca8a04;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 8px;
+}
+
+/* === Modal Overlay === */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.55); /* dark overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* === Modal Box === */
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  width: 600px;
+  max-width: 90%;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+.modal-content h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+}
+
+/* === Form Layout === */
+.form-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 0.3rem;
+}
+
+.form-group input,
+.form-group select {
+  padding: 0.6rem 0.8rem;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #007bff;
+}
+
+/* === Modal Actions === */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.modal-actions button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.modal-actions button[type="button"] {
+  background: #e5e5e5;
+  color: #333;
+}
+
+/* === Modal Overlay === */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.55); /* dark overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* === Modal Box === */
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  width: 600px;
+  max-width: 90%;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+.modal-content h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+}
+
+/* === Form Layout === */
+.form-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 0.3rem;
+}
+
+.form-group input,
+.form-group select {
+  padding: 0.6rem 0.8rem;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #007bff;
+}
+
+/* === Modal Actions === */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.modal-actions button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.modal-actions button[type="button"] {
+  background: #e5e5e5;
+  color: #333;
+}
+
+.modal-actions button[type="button"]:hover {
+  background: #d4d4d4;
+}
+
+.modal-actions button[type="submit"] {
+  background: #007bff;
+  color: white;
+}
+
+.modal-actions button[type="submit"]:hover {
+  background: #0062cc;
+}
+
+/* === Animation === */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}

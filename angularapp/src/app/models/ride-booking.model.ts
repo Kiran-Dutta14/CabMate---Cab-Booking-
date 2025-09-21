@@ -11,4 +11,12 @@ export interface RideBooking {
 
   user?: User;               // Many-to-One relation with User
   driver?: Driver;           // Many-to-One relation with Driver
+
+  // ✅ Extra fields for UI (Fare Management Ride History)
+  customer?: string;         // maps from user.name
+  contact?: string;          // maps from user.email or phone
+  route?: string;            // pickupLocation → dropoffLocation
+  distance?: string;         // optional if backend provides it
+  payment?: string;          // e.g., Cash / Card / UPI
+  date?: string;             // formatted rideTime
 }

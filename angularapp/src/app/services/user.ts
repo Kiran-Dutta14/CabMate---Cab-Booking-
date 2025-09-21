@@ -36,6 +36,11 @@ export class UserService {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 
+  getCount(): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/count`);
+  }
+
+
   login(identifier: string, password: string): Observable<User> {
     return this.http.post<User>(`${this.baseUrl}/login`, {
       identifier: identifier,   // ✅ matches backend DTO

@@ -1,0 +1,132 @@
+<div class="dashboard">
+  <!-- Sidebar -->
+  <app-sidebar></app-sidebar>
+
+  <!-- Right Content -->
+  <div class="main-content">
+    <div class="navbar">
+      <h3>Vehicles</h3>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+      <div>
+        <h2>Vehicle Management</h2>
+        <p>Manage your fleet of vehicles</p>
+      </div>
+      <button class="add-btn" (click)="openAddVehicleModal()">+ Add New Vehicle</button>
+    </div>
+
+    <!-- Search + Filter -->
+    <div class="filters">
+      <input type="text" placeholder="Search vehicles..." [(ngModel)]="searchTerm" (input)="onSearchChange()">
+      <select [(ngModel)]="selectedStatus" (change)="onStatusChange()">
+        <option value="">All Status</option>
+        <option value="Active">Active</option>
+        <option value="Maintenance">Maintenance</option>
+        <option value="Inactive">Inactive</option>
+      </select>
+    </div>
+
+    <!-- Vehicle Table -->
+    <div class="table">
+      <table>
+        <thead>
+          <tr>
+            <th>Vehicle</th>
+            <th>License Plate</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Assigned Driver</th>
+            <th>Added</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let v of filteredVehicles">
+            <td>
+              <div class="vehicle-info">
+                🚘 <div>
+                  <strong>{{ v.name || v.model }}</strong><br>
+                  <span>{{ v.year }} • {{ v.color }}</span>
+                </div>
+              </div>
+            </td>
+            <td><span class="badge license">{{ v.plateNumber }}</span></td>
+            <td><span class="badge type">{{ v.type }}</span></td>
+            <td>
+              <span class="badge" [ngClass]="v.status?.toLowerCase()">{{ v.status }}</span>
+            </td>
+              <td>{{ v.driver?.name || 'Unassigned' }}</td>
+              <td>{{ v.added | date: 'mediumDate' }}</td>
+            <td>
+              <button class="icon-btn">👁</button>
+              <button class="icon-btn">✏</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Add Vehicle Modal -->
+    <div class="modal" *ngIf="showAddVehicleModal">
+      <div class="modal-content">
+        <h2>Add New Vehicle</h2>
+        <form (ngSubmit)="addVehicle()" #vehicleForm="ngForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Make</label>
+              <input type="text" placeholder="e.g. Toyota" [(ngModel)]="newVehicle.make" name="make" required />
+            </div>
+            <div class="form-group">
+              <label>Model</label>
+              <input type="text" placeholder="e.g. Camry" [(ngModel)]="newVehicle.model" name="model" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>Year</label>
+              <input type="number" placeholder="2025" [(ngModel)]="newVehicle.year" name="year" required />
+            </div>
+            <div class="form-group">
+              <label>Color</label>
+              <input type="text" placeholder="e.g. White" [(ngModel)]="newVehicle.color" name="color" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>License Plate</label>
+            <input type="text" placeholder="ABC-123" [(ngModel)]="newVehicle.plateNumber" name="plateNumber" required />
+          </div>
+
+          <div class="form-group">
+            <label>Vehicle Type</label>
+            <select [(ngModel)]="newVehicle.type" name="type" required>
+              <option value="" disabled selected>Select type</option>
+              <option value="Car">Car</option>
+              <option value="Bike">Bike</option>
+              <option value="Auto">Auto</option>
+              <option value="SUV">SUV</option>
+              <option value="Luxury">Luxury</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Assign Driver</label>
+            <select [(ngModel)]="newVehicle.driverId" name="driverId">
+              <option value="">Select driver</option>
+              <option *ngFor="let d of drivers" [value]="d.id">{{ d.name }}</option>
+            </select>
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" (click)="closeAddVehicleModal()">Cancel</button>
+            <button type="submit" [disabled]="!vehicleForm.form.valid">Add Vehicle</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

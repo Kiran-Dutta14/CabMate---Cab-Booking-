@@ -7,4 +7,9 @@ export interface User {
   email: string;
   password: string;
   rides?: RideBooking[];     // One-to-Many relation with RideBooking
+
+  // ✅ Newly added fields for User Management page
+  joined?: string;           // Date user registered
+  lastActive?: string;       // Last active timestamp
+  status?: string;           // Optional: Active / Inactive
 }

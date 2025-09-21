@@ -24,4 +24,9 @@ export class SupportTicketService {
   closeTicket(id: number): Observable<void> {
     return this.http.put<void>(`${this.baseUrl}/${id}/close`, {});
   }
+
+   // ✅ Get count of open tickets (for dashboard)
+  getOpenCount(): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/open/count`);
+  }
 }

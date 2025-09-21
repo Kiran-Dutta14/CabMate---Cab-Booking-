@@ -1,0 +1,104 @@
+<div class="dashboard">
+  <!-- Sidebar -->
+  <app-sidebar></app-sidebar>
+
+  <!-- Right Content -->
+  <div class="main-content">
+    <div class="navbar">
+      <h3>Support Tickets</h3>
+    </div>
+
+    <!-- Stats -->
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon user"></div>
+        <h4>Open Tickets</h4>
+        <p class="amount">2</p>
+        <p>Requires attention</p>
+      </div>
+      <div class="card">
+        <div class="card-icon vehicle"></div>
+        <h4>In Progress</h4>
+        <p class="amount">0</p>
+        <p>Being handled</p>
+      </div>
+      <div class="card">
+        <div class="card-icon ride"></div>
+        <h4>Resolved</h4>
+        <p class="amount">0</p>
+        <p>This month</p>
+      </div>
+      <div class="card">
+        <div class="card-icon ticket"></div>
+        <h4>Total Tickets</h4>
+        <p class="amount">3</p>
+        <p>All time</p>
+      </div>
+    </div>
+
+    <!-- Two-column layout -->
+    <div class="ticket-layout">
+      <!-- Ticket List -->
+      <div class="ticket-list">
+        <h2>Support Tickets</h2>
+        <p>Manage customer queries and issues</p>
+        <input type="text" placeholder="Search tickets...">
+        <div class="filters">
+          <select>
+            <option>All Status</option>
+            <option>Open</option>
+            <option>In Progress</option>
+            <option>Resolved</option>
+            <option>Closed</option>
+          </select>
+          <select>
+            <option>All Priority </option>
+            <option>Urgent</option>
+            <option>High</option>
+            <option>Medium</option>
+            <option>Low</option>
+          </select>
+        </div>
+         <hr> 
+
+        <div class="tickets">
+          <div class="ticket" *ngFor="let t of tickets" (click)="selectTicket(t)">
+            <strong>{{ t.subject }}</strong>
+            <span class="status" [ngClass]="t.status">{{ t.status }}</span>
+            <p>{{ t.customer }}</p>
+            <small style="font-size: 15px;">{{ t.email }}</small>
+            <div class="tags">
+              <span class="badge">{{ t.category }}</span>
+              <span class="badge">{{ t.priority }}</span>
+            </div>
+            <small>{{ t.created }}</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ticket Details -->
+      <div class="ticket-details" *ngIf="selectedTicket; else emptyState">
+        <h2>Ticket Details</h2>
+        <p><strong>Customer:</strong> {{ selectedTicket.customer }}</p>
+        <p><strong>Email:</strong> {{ selectedTicket.email }}</p>
+        <p><strong>Phone:</strong> {{ selectedTicket.phone }}</p>
+        <p><strong>Status:</strong> {{ selectedTicket.status }}</p>
+        <p><strong>Subject:</strong> {{ selectedTicket.subject }}</p>
+        <p><strong>Description:</strong> {{ selectedTicket.description }}</p>
+        <p><strong>Priority:</strong> {{ selectedTicket.priority }}</p>
+        <p><strong>Category:</strong> {{ selectedTicket.category }}</p>
+        <p><strong>Created:</strong> {{ selectedTicket.created }}</p>
+
+        <!-- Response Box -->
+        <textarea placeholder="Type your response here..."></textarea>
+        <button class="send-btn">Send Response</button>
+      </div>
+
+      <ng-template #emptyState>
+        <div class="ticket-empty">
+          <p>Select a ticket to view details and respond</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

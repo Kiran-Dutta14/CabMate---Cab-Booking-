@@ -1,0 +1,169 @@
+.dashboard {
+  display: flex;
+  height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px 25px;
+  overflow-y: auto;
+}
+
+.navbar {
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.navbar h3 {
+  font-size: 25px;
+  font-weight: 600;
+  color: #fafcff;
+  padding: 5px;
+  margin: 5px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.card h4 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card-icon {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  opacity: 0.15;
+}
+
+.card-icon.user {
+  background: #3b82f6;
+}
+
+.card-icon.vehicle {
+  background: #22c55e;
+}
+
+.card-icon.ride {
+  background: #8b5cf6;
+}
+
+.card-icon.ticket {
+  background: #facc15;
+}
+
+.ticket-layout {
+  display: flex;
+}
+
+.ticket-list, .ticket-details {
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  flex: 1;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.ticket-list input{
+    width: 300px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.filters select {
+    margin-right: 10px;
+    padding: 7px;
+}
+
+.ticket {
+  border-bottom: 2px solid #eee;
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.ticket:hover {
+  background: #f3f4f6;
+}
+
+.status {
+    margin-left: 10px;
+    border-radius: 8px;
+    padding: 3px;
+}
+
+.status.open {
+  background-color: red;
+  
+}
+
+.status.closed {
+  background-color: rgb(7, 165, 7);
+}
+
+.status.in_progress {
+  background-color: rgb(234, 222, 7);
+}
+
+.status.resolved {
+  background-color: rgb(36, 53, 236);
+}
+
+.badge {
+  display: inline-block;
+  border-radius: 12px;
+  font-size: 12px;
+  background: #f3f4f6;
+  margin-right: 5px;
+}
+
+.ticket-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #9ca3af;
+}
+
+textarea {
+  width: 100%;
+  min-height: 80px;
+  border-radius: 6px;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+}
+
+.send-btn {
+  background: #2563eb;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}

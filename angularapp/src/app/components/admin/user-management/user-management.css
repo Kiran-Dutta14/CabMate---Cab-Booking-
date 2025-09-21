@@ -1,0 +1,82 @@
+/* ====== DASHBOARD LAYOUT ====== */
+.dashboard {
+  display: flex;
+  height: 100vh;
+}
+
+
+
+/* ====== MAIN CONTENT ====== */
+.main-content {
+  flex: 1;
+  padding: 20px 25px;
+  overflow-y: auto;
+}
+
+.navbar {
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.navbar h3 {
+  font-size: 25px;
+  font-weight: 600;
+  color: #fafcff;
+  padding: 5px;
+  margin: 5px;
+}
+
+.management {
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h2 {
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+
+.total-users {
+  font-size: 14px;
+  color: #374151;
+  font-weight: 600;
+}
+
+.filters {
+  margin-bottom: 20px;
+}
+
+.filters input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.table {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background: #f3f4f6;
+  text-align: left;
+}
+
+th, td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}

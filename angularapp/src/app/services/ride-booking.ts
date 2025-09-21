@@ -11,6 +11,11 @@ export class RideBookingService {
 
 constructor(private http: HttpClient) {}
 
+  // ✅ Get all rides (for admin ride history)
+  getAll(): Observable<RideBooking[]> {
+    return this.http.get<RideBooking[]>(this.baseUrl);
+  }
+
   // get rides for a driver
   getRidesByDriver(driverId: number): Observable<RideBooking[]> {
     return this.http.get<RideBooking[]>(`${this.baseUrl}/driver/${driverId}`);

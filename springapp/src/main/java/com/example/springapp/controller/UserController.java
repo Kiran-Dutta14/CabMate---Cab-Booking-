@@ -56,6 +56,13 @@ public class UserController {
                 .orElseThrow(() -> new RuntimeException("User not found!"));
     }
 
+    // ✅ Get total users count
+    @GetMapping("/count")
+    public long getUserCount() {
+        return userRepository.count();
+    }
+
+
     // ✅ DTO for login request
     static class LoginRequest {
         private String identifier; // can be phone OR email

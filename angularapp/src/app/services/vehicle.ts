@@ -14,19 +14,37 @@ export class VehicleService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl);
+   // Get all vehicles
+  getAll(): Observable<Vehicle[]> {
+    return this.http.get<Vehicle[]>(this.baseUrl);
   }
 
-  create(vehicle: any): Observable<any> {
-    return this.http.post<any>(this.baseUrl, vehicle);
+    // Get vehicle by id
+  getById(id: number): Observable<Vehicle> {
+    return this.http.get<Vehicle>(`${this.baseUrl}/${id}`);
   }
 
-  update(id: number, vehicle: any): Observable<any> {
-    return this.http.put<any>(`${this.baseUrl}/${id}`, vehicle);
+   // Create vehicle
+  create(vehicle: Vehicle): Observable<Vehicle> {
+    return this.http.post<Vehicle>(`${this.baseUrl}/register`, vehicle);
+  }
+
+  // Update vehicle
+  update(id: number, vehicle: Vehicle): Observable<Vehicle> {
+    return this.http.put<Vehicle>(`${this.baseUrl}/${id}`, vehicle);
   }
 
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  }
+
+  // Optional: get vehicles by status (if backend supports it)
+  getByStatus(status: string): Observable<Vehicle[]> {
+    return this.http.get<Vehicle[]>(`${this.baseUrl}/status/${status}`);
+  }
+
+  // Optional: get count
+  getCount(): Observable<number> {
+    return this.http.get<number>(`${this.baseUrl}/count`);
   }
 }
