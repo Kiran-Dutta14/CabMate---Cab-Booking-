@@ -33,4 +33,19 @@ public class FareService {
     public Fare getFareByVehicleType(String vehicleType) {
         return fareRepository.findActiveFareByVehicleType(vehicleType);
     }
+
+    // ✅ Get fares by status (Active / Inactive)
+    public List<Fare> getFaresByStatus(String status) {
+        return fareRepository.findByStatusIgnoreCase(status);
+    }
+
+    // ✅ Count all fares
+    public long getFareCount() {
+        return fareRepository.count();
+    }
+
+    // ✅ Count fares by status
+    public long getFareCountByStatus(String status) {
+        return fareRepository.countByStatusIgnoreCase(status);
+    }
 }

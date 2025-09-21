@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/fares")
+@CrossOrigin(origins = "http://localhost:4200") 
 @RequiredArgsConstructor // ✅ Injects FareService via constructor
 public class FareController {
 
@@ -42,5 +43,23 @@ public class FareController {
     public ResponseEntity<String> deleteFare(@PathVariable Long id) {
         fareService.deleteFare(id);
         return ResponseEntity.ok("Fare with ID " + id + " deleted successfully.");
+    }
+
+    // ✅ Get total fare rules count
+    @GetMapping("/count")
+    public long getFareCount() {
+        return fareService.getFareCount();
+    }
+
+    // ✅ Get all fares by status (ACTIVE/INACTIVE)
+    @GetMapping("/status/{status}")
+    public List<Fare> getFaresByStatus(@PathVariable String status) {
+        return fareService.getFaresByStatus(status);
+    }
+
+    // ✅ Get count of fares by status
+    @GetMapping("/count/{status}")
+    public long getFareCountByStatus(@PathVariable String status) {
+        return fareService.getFareCountByStatus(status);
     }
 }
