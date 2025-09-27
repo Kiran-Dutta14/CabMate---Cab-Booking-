@@ -37,6 +37,9 @@ public class DriverController {
     // ✅ Login Driver (by email or phone, plain text password)
     @PostMapping("/login")
     public Driver loginDriver(@RequestBody LoginRequest loginRequest) {
+        String identifier = loginRequest.getIdentifier();
+        String password = loginRequest.getPassword();
+
         // Try by email + password
         return driverRepository.findByEmailAndPassword(loginRequest.getIdentifier(), loginRequest.getPassword())
                 .orElseGet(() ->

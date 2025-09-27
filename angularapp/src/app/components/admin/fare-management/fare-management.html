@@ -12,12 +12,12 @@
     <div class="cards">
       <div class="card">
         <h4>Total Revenue</h4>
-        <p class="amount">$90.50</p>
+        <p class="amount">₹90.50</p>
         <small>+12.5% from last month</small>
       </div>
       <div class="card">
         <h4>Average Fare</h4>
-        <p class="amount">$45.25</p>
+        <p class="amount">₹45.25</p>
         <small>Per completed ride</small>
       </div>
       <div class="card">
@@ -56,10 +56,10 @@
           <tr *ngFor="let f of fareRules">
             <td>{{ f.ruleName }}</td>
             <td><span class="badge type">{{ f.vehicleType }}</span></td>
-            <td>\${{ f.baseFare }}</td>
-            <td>\${{ f.perKm }}</td>
-            <td>\${{ f.perMinute }}</td>
-            <td>\${{ f.minFare }}</td>
+            <td>₹{{ f.baseFare }}</td>
+            <td>₹{{ f.perKm }}</td>
+            <td>₹{{ f.perMinute }}</td>
+            <td>₹{{ f.minFare }}</td>
             <td><span class="badge status active">{{ f.status }}</span></td>
           </tr>
         </tbody>
@@ -91,7 +91,7 @@
             </td>
             <td>{{ r.driver?.name || 'Unassigned' }}</td>
             <td>{{ r.pickupLocation }} → {{ r.dropoffLocation }}</td>
-            <td>\${{ r.fare }}</td>
+            <td>₹{{ r.fare }}</td>
             <td><span class="badge status" [ngClass]="r.status">{{ r.status }}</span></td>
             <td>{{ r.rideTime | date:'medium' }}</td>
           </tr>
@@ -125,22 +125,22 @@
 
           <div class="form-row">
             <div class="form-group">
-              <label>Base Fare ($)</label>
+              <label>Base Fare (₹)</label>
               <input type="number" [(ngModel)]="newFareRule.baseFare" name="baseFare" placeholder="5.00" required />
             </div>
             <div class="form-group">
-              <label>Minimum Fare ($)</label>
+              <label>Minimum Fare (₹)</label>
               <input type="number" [(ngModel)]="newFareRule.minFare" name="minFare" placeholder="10.00" required />
             </div>
           </div>
 
           <div class="form-row">
             <div class="form-group">
-              <label>Per KM Rate ($)</label>
+              <label>Per KM Rate (₹)</label>
               <input type="number" [(ngModel)]="newFareRule.perKm" name="perKm" placeholder="2.50" required />
             </div>
             <div class="form-group">
-              <label>Per Minute ($)</label>
+              <label>Per Minute (₹)</label>
               <input type="number" [(ngModel)]="newFareRule.perMinute" name="perMinute" placeholder="0.50" required />
             </div>
           </div>

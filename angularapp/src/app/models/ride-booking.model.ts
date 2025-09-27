@@ -5,7 +5,7 @@ export interface RideBooking {
   id?: number;               // Optional since it's auto-generated
   pickupLocation: string;
   dropoffLocation: string;
-  rideTime: string;          // Use string to represent LocalDateTime
+  rideTime?: Date;          // Use string to represent LocalDateTime
   fare: number;
   status: string;            // BOOKED, ONGOING, COMPLETED, CANCELLED
 

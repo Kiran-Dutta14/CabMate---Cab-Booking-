@@ -4,14 +4,10 @@
   min-height: 100vh; /* full screen height */
   
 }
-/*#about{
-  background-image: linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365 100%);
-
-}*/
-
 
 .about-section {
-  padding: 100px 40px;
+  padding: 100px 30px;
+  
 }
 
 .about-container {

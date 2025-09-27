@@ -36,7 +36,6 @@
                 <th>License</th>
                 <th>Status</th>
                 <th>Rating</th>
-                <th>Rides</th>
                 <th>Earnings</th>
                 <th>Joined</th>
                 <th>Actions</th>
@@ -54,8 +53,7 @@
                     <span class="badge" [ngClass]="d.status">{{ d.status }}</span>
                 </td>
                 <td>⭐ {{ d.rating }}</td>
-                <td>{{ d.rides }}</td>
-                <td>\${{ d.earnings }}</td>
+                <td>₹{{ d.earnings }}</td>
                 <td>{{ d.joined }}</td>
                 <td>
                     <button class="icon-btn">👁</button>

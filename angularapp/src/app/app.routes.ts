@@ -12,6 +12,7 @@ import { Signin } from './components/signin/signin';
 import { AttachCar } from './components/attach-car/attach-car';
 import { UserDashboard } from './components/user-dashboard/user-dashboard';
 import { DriverDashboard } from './components/driver-dashboard/driver-dashboard';
+import { Ride } from './components/ride/ride';
 
 //Admin Components
 import { AdminLogin } from './components/admin/admin-login/admin-login';
@@ -34,6 +35,7 @@ export const routes: Routes = [
   { path: 'attach-car', component: AttachCar},
   { path: 'user-dashboard', component: UserDashboard },
   { path: 'driver-dashboard', component: DriverDashboard },
+  { path: 'ride', component: Ride },
 
   
   // 🔹 Admin Routes

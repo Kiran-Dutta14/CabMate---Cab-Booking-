@@ -13,6 +13,8 @@ public interface RideBookingRepository extends JpaRepository<RideBooking, Long> 
     List<RideBooking> findByDriverId(Long driverId);
     List<RideBooking> findByUserIdAndStatus(Long userId, String status);
     List<RideBooking> findByDriverIdAndStatus(Long driverId, String status);
+    List<RideBooking> findByStatus(String status);
+    List<RideBooking> findByDriverIsNullAndStatus(String status);
 }
 
 

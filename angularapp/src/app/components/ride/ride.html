@@ -1,0 +1,113 @@
+<div class="ride-container">
+
+  <!-- Left Section -->
+  <div class="ride-details">
+    <h1>Choose a Ride</h1>
+        <div class="location">
+            <h2>{{ pickup }} → {{ dropoff }}</h2>
+            <p class="leave-now">Leave Now</p>
+        </div>
+
+        <h3>Rides we think you'll like</h3>
+
+        <!-- Ride Options -->
+        <div *ngFor="let ride of rideOptions" class="ride-option" [class.selected]="selectedRide === ride" (click)="selectRide(ride)">
+            <div class="ride-info">
+                <div>
+                    <strong>{{ ride.name }}</strong> <span class="people">👤 {{ ride.people }}</span><br />
+                    <small>{{ ride.time }} • {{ ride.eta }}</small><br />
+                    <span *ngIf="ride.desc" class="desc">{{ ride.desc }}</span>
+                </div>
+            </div>
+
+            <div class="fare">
+                <span *ngIf="ride.discount" class="discount">{{ ride.discount }}</span>
+                <span class="price">₹{{ ride.fare }}</span>
+                <span *ngIf="ride.originalFare" class="original">₹{{ ride.originalFare }}</span>
+            </div>
+        </div>
+
+        <!-- Payment Method -->
+        <div class="payment">
+        <button class="payment-btn" (click)="openPaymentModal()">
+            {{ selectedPayment ? selectedPayment : '➕ Add Payment Method' }}
+        </button>
+        </div>
+
+        <!-- Request Button -->
+        <button class="request-btn" [disabled]="!selectedRide" (click)="requestRide()">
+          {{ requestButtonText }}
+        </button>
+    </div>
+
+    <!-- Right Section (Map in box) -->
+    <div class="map-container">
+        <div id="map" class="ride-map"></div>
+    </div>
+</div>
+
+
+<!-- ✅ Payment Modal -->
+<div class="modal-overlay" *ngIf="showPaymentModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Add payment method</h2>
+      <button class="close-btn" (click)="closePaymentModal()">✕</button>
+    </div>
+
+    <div class="modal-option" (click)="selectCash()">
+      <img src="https://img.icons8.com/fluency/24/000000/money.png" />
+      <span>Cash</span>
+    </div>
+
+    <div class="modal-option" (click)="selectGiftCard()">
+      <img src="https://img.icons8.com/fluency/24/000000/gift.png" />
+      <span>Gift card</span>
+    </div>
+
+    <div class="modal-option" (click)="selectUpi()">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/UPI-Logo-vector.svg" width="24" height="24"/>
+      <span>UPI</span>
+    </div>
+  </div>
+</div>
+
+<!-- ✅ Cash Confirm Modal -->
+<div class="modal-overlay" *ngIf="showCashConfirmModal">
+  <div class="modal cash-modal">
+    <button class="close-btn top-right" (click)="showCashConfirmModal=false">✕</button>
+    <div class="cash-header">
+      <img src="https://img.icons8.com/color/96/000000/money.png" />
+    </div>
+    <h3>Cash Payment Selected</h3>
+    <p>Change may not be available, so pay with the exact cash amount if you can.</p>
+    <button class="confirm-btn" (click)="confirmCash()">Confirm</button>
+  </div>
+</div>
+
+<!-- Gift Card Modal -->
+<div class="modal-overlay" *ngIf="showGiftCardModal">
+  <div class="modal gift-modal">
+    <button class="close-btn top-right" (click)="showGiftCardModal=false">✕</button>
+    <div class="gift-header">
+      <img src="https://img.icons8.com/fluency/96/000000/gift.png" />
+    </div>
+    <h3>Add Gift Card</h3>
+    <input type="text" [(ngModel)]="giftCardCode" placeholder="Enter your code..." class="gift-input" />
+    <button class="confirm-btn" (click)="applyGiftCard()">Apply</button>
+  </div>
+</div>
+
+<!-- UPI Modal -->
+<div class="modal-overlay" *ngIf="showUpiModal">
+  <div class="modal upi-modal">
+    <button class="close-btn top-right" (click)="showUpiModal=false">✕</button>
+    <h3>Add Payment Address</h3>
+    <input type="text" [(ngModel)]="upiAddress" placeholder="abc@example" class="upi-input" />
+    <p class="upi-info">
+      <strong>We will make a ₹1 charge to authenticate your Payment Address</strong><br>
+      <span>Don't worry, we will process the refund of this charge after the authentication.</span>
+    </p>
+    <button class="confirm-btn" (click)="confirmUpi()">Add Payment Address</button>
+  </div>
+</div>

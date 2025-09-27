@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { RideBookingService } from '../../services/ride-booking';
@@ -24,54 +24,47 @@ export class DriverDashboard implements OnInit, AfterViewInit {
   };
 
   stats = { earnings: 0, completedRides: 0 };
+
   today: Date = new Date();
   online: boolean = false;
   rideRequestVisible: boolean = false;
-  recentRides: any[] = [];
+
+  // right panel list
+  recentRides: Array<{
+    id: number;
+    date: string;                 // localized string for UI
+    pickupLocation: string;
+    dropoffLocation: string;
+    fare: number;
+    status: string;
+    rideTimeRaw?: string | null;  // keep raw for date filtering
+  }> = [];
+
+  selectedRide: RideBooking | null = null;
 
   constructor(
     private router: Router,
-    private rideBookingService: RideBookingService
+    private rideBookingService: RideBookingService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
     const storedDriver = localStorage.getItem('currentDriver');
-    if (storedDriver) {
-      this.driver = JSON.parse(storedDriver);
+    if (!storedDriver) {
+       this.router.navigate(['/signin']);
+      return;
+    }
 
-      // Driver initials for avatar
-      this.driver.initials = this.driver.name
-        ? this.driver.name.split(' ').map((n: string) => n[0]).join('').toUpperCase()
-        : 'DR';
+    this.driver = JSON.parse(storedDriver);
 
-      // ✅ Fetch ride history for logged-in driver
-      if (this.driver.id != null) {
-        this.rideBookingService.getRidesByDriver(this.driver.id).subscribe({
-          next: (rides: any[]) => {
-            console.log("Fetched rides from backend:", rides);
-            
-            this.recentRides = rides.map((r: any) => ({
-              date: r.rideTime ? new Date(r.rideTime).toLocaleString() : '—',
-              route: `${r.pickupLocation ?? '—'} → ${r.dropoffLocation ?? '—'}`,
-              earnings: r.fare ?? 0
-            }));
+    // Driver initials for avatar
+    this.driver.initials = this.driver.name
+      ? this.driver.name.split(' ').map((n: string) => n[0]).join('').toUpperCase()
+      : 'DR';
 
-            // ✅ Calculate stats
-            this.stats.completedRides = this.recentRides.length;
-            this.stats.earnings = this.recentRides.reduce(
-              (sum, r) => sum + (r.earnings || 0),
-              0
-            );
-          },
-          error: (err) => {
-            console.error('Error fetching rides:', err);
-            this.recentRides = [];
-          }
-        });
-      }
-    } else {
-      // If no driver found, redirect back to signin
-      this.router.navigate(['/signin']);
+    // ✅ Fetch ride history for logged-in driver
+    if (this.driver.id != null) {
+      this.fetchDriverRides();
     }
   }
 
@@ -79,21 +72,104 @@ export class DriverDashboard implements OnInit, AfterViewInit {
     setTimeout(() => this.loadMap(), 0);
   }
 
-  toggleOnline() {
+  /** Pull rides for this driver and compute today's totals */
+  private fetchDriverRides(): void {
+    this.rideBookingService.getRidesByDriver(this.driver.id).subscribe({
+      next: (rides: any[]) => {
+        this.recentRides = rides.map((r: any) => ({
+          id: r.id,
+          date: r.rideTime ? new Date(r.rideTime).toLocaleString() : '—',
+          pickupLocation: r.pickupLocation ?? '—',
+          dropoffLocation: r.dropoffLocation ?? '—',
+          fare: Number(r.fare ?? 0),
+          status: r.status ?? '—',
+          rideTimeRaw: r.rideTime ?? null
+        }));
+
+        // ✅ Quick fix: show totals for ALL rides
+        this.stats.completedRides = this.recentRides.length;
+        this.stats.earnings = this.recentRides.reduce((sum, r) => sum + (r.fare || 0), 0);
+
+        // check for any pending (BOOKED/PENDING) to show request popup
+        const pending = rides.find((r: any) => r.status === 'PENDING' || r.status === 'BOOKED');
+        this.selectedRide = pending ?? null;
+        this.rideRequestVisible = !!this.selectedRide;
+
+        this.cdr.detectChanges();
+      },
+      error: (err) => {
+        console.error('Error fetching rides:', err);
+        this.recentRides = [];
+        this.stats = { earnings: 0, completedRides: 0 };
+      }
+    });
+  }
+    
+
+  toggleOnline(): void {
     this.online = !this.online;
-    // Example: notify backend about status
-    // this.rideBookingService.setDriverStatus(this.driver.id, this.online).subscribe();
+
+    if (this.online) {
+      this.rideBookingService.getPendingRides().subscribe({
+        next: (rides) => {
+          // pick the first pending ride; adjust strategy as needed
+          this.selectedRide = rides[0] ?? null;
+          this.rideRequestVisible = !!this.selectedRide;
+        },
+        error: (e) => console.error('Error fetching pending rides:', e)
+      });
+    } else {
+      this.rideRequestVisible = false;
+    }
+  }  
+
+
+  // 🔥 NEW: driver accepts ride
+  acceptRide(rideId: number): void {
+    if (!this.driver.id) return;
+    this.rideBookingService.acceptRide(rideId, this.driver.id).subscribe({
+      next: (updatedRide) => {
+        alert('✅ Ride accepted! Navigating to pickup...');
+        this.selectedRide = updatedRide;
+        this.selectedRide.status = 'CONFIRMED';
+
+        this.rideRequestVisible = true;
+      },
+      error: (err) => console.error('❌ Error accepting ride:', err)
+    });
   }
 
-  acceptRide() {
-    this.rideRequestVisible = true;
-    alert('Ride accepted!');
+  // 🔥 NEW: driver declines ride
+  declineRide(rideId: number): void {
+    this.rideBookingService.cancelRide(rideId).subscribe({
+      next: () => {
+        alert('❌ Ride declined.');
+        this.rideRequestVisible = false;
+        this.fetchDriverRides();
+      },
+      error: (err) => console.error('❌ Error declining ride:', err)
+    });
   }
 
-  declineRide() {
-    this.rideRequestVisible = true;
-    alert('Ride declined!');
-  }
+  // ✅ Mark ride as completed and update driver earnings
+completeRide(rideId: number) {
+  this.rideBookingService.completeRide(rideId).subscribe({
+     next: (updatedRide) => {
+      alert('✅ Ride completed successfully!');
+      this.selectedRide = updatedRide;
+      this.rideRequestVisible = false;
+
+      // ✅ Refresh stats
+      this.stats.completedRides += 1;
+      this.stats.earnings += updatedRide.fare || 0;
+    },
+    error: (err) => {
+      console.error('❌ Error completing ride:', err);
+      alert('Failed to complete ride.');
+    }
+  });
+}
+
 
   private loadMap() {
     const mapElement = document.getElementById('map');

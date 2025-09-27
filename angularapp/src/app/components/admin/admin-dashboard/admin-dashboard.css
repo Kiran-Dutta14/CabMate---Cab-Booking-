@@ -156,25 +156,7 @@ body {
   margin-bottom: 10px;
 }
 
-/* ====== TABLE SECTIONS ====== */
-.tables {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
 
-.table-box {
-  background: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-}
-
-.table-box h3 {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 15px;
-}
 
 /* ====== BADGES (status) ====== */
 .badge {

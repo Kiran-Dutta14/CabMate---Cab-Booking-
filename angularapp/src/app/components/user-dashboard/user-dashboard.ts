@@ -19,10 +19,10 @@ export class UserDashboard implements OnInit, AfterViewInit {
   firstName = '';
   dropdownOpen = false;
 
-  pickup = '';
-  dropoff = '';
-  pickupTime = 'Pickup now';
-  riderType = 'For me';
+  pickup:string = '';
+  dropoff:string = '';
+  pickupTime:string = 'Pickup now';
+  riderType:string = 'For me';
 
   constructor(private router: Router, private rideBookingService: RideBookingService) {}
 
@@ -37,7 +37,10 @@ export class UserDashboard implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    setTimeout(() => this.loadMap(), 0);
+    setTimeout(() => {
+      this.loadMap()
+      this.initAutocomplete();
+    }, 0);
   }
 
   toggleDropdown() {
@@ -49,46 +52,69 @@ export class UserDashboard implements OnInit, AfterViewInit {
     this.router.navigate(['/signin']);
   }
 
+  // ✅ FIX: Search should not save ride into DB
   searchRide() {
-    console.log(`Searching ride from ${this.pickup} to ${this.dropoff}`);
-    // Call backend to search/create ride
-    const payload = {
-      userId: this.user.id,
-      pickup: this.pickup,
-      dropoff: this.dropoff,
-      pickupTime: this.pickupTime,
-      riderType: this.riderType
-    };
+    if (!this.pickup || !this.dropoff) {
+      alert('Please enter both pickup and dropoff locations.');
+      return;
+    }
 
-    this.rideBookingService.requestRide(payload).subscribe({
-      next: (res) => {
-        alert('Ride requested successfully.');
-        // optionally redirect to ride status page
-      },
-      error: (err) => {
-        console.error('Error requesting ride', err);
-        alert('Failed to request ride.');
+    // Just simulate search — do not call backend here
+    console.log(`Searching ride from ${this.pickup} to ${this.dropoff}`);
+    alert(`Searching ride from ${this.pickup} to ${this.dropoff}`);
+
+     // ✅ Redirect to ride details/estimation page (optional)
+    this.router.navigate(['/ride'], {
+      queryParams: {
+        pickup: this.pickup,
+        dropoff: this.dropoff,
+        pickupTime: this.pickupTime,
+        riderType: this.riderType
       }
     });
   }
 
+
   private loadMap() {
     const mapElement = document.getElementById('map');
-    if (!mapElement) return;
-    if (typeof google === 'undefined') {
-      console.warn('Google maps not loaded.');
-      return;
-    }
+    if (!mapElement || typeof google === 'undefined') return;
 
     const map = new google.maps.Map(mapElement, {
-      center: { lat: 28.6139, lng: 77.2090 },
+      center: { lat: 12.9716, lng: 77.5946 }, // Default center (Bangalore)
       zoom: 12
     });
 
     new google.maps.Marker({
-      position: { lat: 28.6139, lng: 77.2090 },
+      position: { lat: 12.9716, lng: 77.5946 },
       map,
       title: 'Pickup Location'
+    });
+  }
+
+   private initAutocomplete() {
+    const pickupInput = document.getElementById('pickupInput') as HTMLInputElement;
+    const dropoffInput = document.getElementById('dropoffInput') as HTMLInputElement;
+
+    if (!pickupInput || !dropoffInput || !google || !google.maps.places) {
+      console.warn('Google Places API not loaded');
+      return;
+    }
+
+    const pickupAutocomplete = new google.maps.places.Autocomplete(pickupInput);
+    const dropoffAutocomplete = new google.maps.places.Autocomplete(dropoffInput);
+
+    pickupAutocomplete.addListener('place_changed', () => {
+      const place = pickupAutocomplete.getPlace();
+      if (place && place.formatted_address) {
+        this.pickup = place.formatted_address;
+      }
+    });
+
+    dropoffAutocomplete.addListener('place_changed', () => {
+      const place = dropoffAutocomplete.getPlace();
+      if (place && place.formatted_address) {
+        this.dropoff = place.formatted_address;
+      }
     });
   }
 }

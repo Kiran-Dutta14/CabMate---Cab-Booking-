@@ -1,19 +1,19 @@
 :host {
   display: block;
   height: 100vh;
-  background: url('/assets/images/admin-login1.png') no-repeat center center fixed;
+  background: url('/assets/images/admin.png') no-repeat center center fixed;
   background-position: right;
-  background-size: 60%;
-  background-color: rgba(154, 215, 204, 0.591)
+  background-size: 65%;
+  
 }
 
 .login-container {
   width: 300px;
-  margin: 200px 200px;
+  margin: 200px 150px ;
   padding: 20px;
-  border: 1px solid #ddd;
+  border: 1px solid #ff5900;
   border-radius: 10px;
-  background: linear-gradient(rgb(111, 226, 165), rgb(0, 0, 0));
+  background-image: linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365 100%);
   position: fixed;
   text-align: center;
   opacity: 0.9;
@@ -23,13 +23,13 @@
   width: 100%;
   margin: 10px 0;
   padding: 8px;
-  background: rgba(0, 0, 0, 0.537);
-  color: white;
+  background: rgba(253, 251, 251, 0.537);
+  color: rgb(1, 1, 1);
 }
 .login-container button {
   width: 100%;
   padding: 10px;
-  background-color: #007bff;
+  background-color: #ff6200;
   color: white;
   border: none;
   border-radius: 5px;

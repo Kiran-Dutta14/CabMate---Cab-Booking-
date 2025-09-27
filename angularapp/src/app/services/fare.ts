@@ -56,4 +56,15 @@ export class FareService {
   getCountByStatus(status: string): Observable<number> {
     return this.http.get<number>(`${this.baseUrl}/count/${status}`);
   }
+
+  // ✅ Utility function to calculate fare dynamically
+  calculateFare(distanceKm: number, durationMin: number, rule: Fare): number {
+    let fare = rule.baseFare + (distanceKm * rule.perKm) + (durationMin * rule.perMinute);
+
+    if (rule.minFare && fare < rule.minFare) {
+      fare = rule.minFare; // enforce minimum fare
+    }
+
+    return parseFloat(fare.toFixed(2));
+  }
 }

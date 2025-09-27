@@ -6,7 +6,6 @@
   min-height: 100vh;
   background: #f9fafb;
   color: #333;
-  font-family: 'Inter', sans-serif;
 }
 
 /* Sidebar */
@@ -226,6 +225,7 @@
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     display: none;
+    width: 400px;
 }
 
 .ride-request.active {
@@ -282,6 +282,7 @@
   margin-top: 1rem;
   display: flex;
   justify-content: space-between;
+ 
 }
 
 .btn {
@@ -325,9 +326,24 @@
 }
 
 .panel-content {
-    padding: 1.25rem;
-    overflow-y: auto;
-    flex: 1;
+  padding: 1.25rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex: 1;
+  max-height: 300px;
+}
+
+.panel-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.panel-content::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 4px;
+}
+
+.panel-content::-webkit-scrollbar-thumb:hover {
+  background-color: #888;
 }
 
 .ride-history {
@@ -339,30 +355,39 @@
 .ride-item {
   display: flex;
   justify-content: space-between;
-  padding: 0.75rem 0;
+  align-items: center;
+  padding: 12px 0;
   border-bottom: 1px solid #eee;
 }
 
+.ride-left {
+  display: flex;
+  flex-direction: column;
+}
 
 .ride-item:last-child {
     border-bottom: none;
 }
 
 .ride-date {
-    color: var(--muted-foreground);
-    font-size: 0.875rem;
-    margin-bottom: 0.5rem;
+  font-size: 12px;
+  color: gray;
+  margin-bottom: 4px;
 }
 
 .ride-route {
-    display: flex;
     align-items: center;
+    font-size: 14px;
+    font-weight: 500;
     margin-bottom: 0.5rem;
+    color: #333;
 }
 
-.ride-earnings {
-    font-weight: 600;
-    color: var(--primary);
+.ride-right {
+  font-size: 14px;
+  font-weight: bold;
+  color: #00b894; /* green fare */
+  white-space: nowrap;
 }
 
 /* ✅ Empty states */

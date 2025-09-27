@@ -22,7 +22,6 @@
       <div class="dropdown-actions">
         <button>Help</button>
         <button>Statements</button>
-        <button>Activity</button>
       </div>
 
       <ul class="dropdown-links">
@@ -44,7 +43,7 @@
 
   <div class="cards">
     <div class="card">
-      <img src="assets/images/user2.jpeg" alt="Ride" />
+      <img src="assets/images/user2.png" alt="Ride" />
       <h3>Earn on your own schedule.</h3>
       <button>Book a Ride</button>
     </div>
@@ -61,8 +60,8 @@
   <div class="ride-form">
     <h2>Get a ride</h2>
 
-    <input type="text" class="input-icon1" [(ngModel)]="pickup" placeholder="Pickup location" />
-    <input type="text" class="input-icon2" [(ngModel)]="dropoff" placeholder="Dropoff location" />
+    <input id="pickupInput" type="text" class="input-icon1" [(ngModel)]="pickup" placeholder="Pickup location" />
+    <input id="dropoffInput" type="text" class="input-icon2" [(ngModel)]="dropoff" placeholder="Dropoff location" />
 
     <select [(ngModel)]="pickupTime">
       <option>Pickup now</option>

@@ -44,8 +44,8 @@
     <!-- Stats -->
     <div class="stats-grid">
       <div class="stat-card">
-        <div class="stat-title"><img src="assets/images/earning2.png" >Today's Earnings</div>
-        <div class="stat-value">${{ stats.earnings }}</div>
+        <div class="stat-title"><img src="assets/images/earning2.png" >Total Earnings</div>
+        <div class="stat-value">₹{{ stats.earnings }}</div>
       </div>
       <div class="stat-card">
         <div class="stat-title"><img src="assets/images/car-insurance.png" >Completed Rides</div>
@@ -62,26 +62,34 @@
       <div class="map-container">
         <div id="map"></div>
 
-        <div class="ride-request" [class.active]="rideRequestVisible">
+        <div class="ride-request active" *ngIf="rideRequestVisible && selectedRide">
           <div class="ride-details">
             <div class="ride-locations">
               <div class="location">
                 <div class="location-dot pickup-dot"></div>
-                <div class="location-text">{{ driver.lastPickup || 'Pickup Location' }}</div>
+                <div class="location-text">{{ selectedRide.pickupLocation || 'Pickup Location' }}</div>
               </div>
               <div class="location">
                 <div class="location-dot dropoff-dot"></div>
-                <div class="location-text">{{ driver.lastDropoff || 'Dropoff Location' }}</div>
+                <div class="location-text">{{ selectedRide.dropoffLocation || 'Dropoff Location'}}</div>
               </div>
             </div>
             <div class="ride-info">
-              <div>Distance: <span>-- km</span></div>
-              <div>Fare: <span>₹ --</span></div>
+              <div>Fare: <span>₹{{ selectedRide.fare }}</span></div>
+              <div>Status: <span>{{ selectedRide.status }}</span></div>
             </div>
           </div>
           <div class="ride-actions">
-            <button class="btn btn-outline" (click)="declineRide()">Decline</button>
-            <button class="btn btn-primary" (click)="acceptRide()">Accept</button>
+            <button class="btn btn-outline" (click)="declineRide(selectedRide.id!)">Decline</button>
+            <button class="btn btn-primary" (click)="acceptRide(selectedRide.id!)">Accept</button>
+            
+            <!-- ✅ New Complete button, visible only when ride is CONFIRMED -->
+            <button 
+              class="btn btn-success" 
+              *ngIf="selectedRide?.status === 'CONFIRMED'" 
+              (click)="completeRide(selectedRide.id!)">
+              Complete Ride
+            </button>
           </div>
         </div>
       </div>
@@ -92,10 +100,13 @@
         <div class="panel-content">
           <ul class="ride-history" *ngIf="recentRides && recentRides.length > 0; else noRides">
             <li class="ride-item" *ngFor="let ride of recentRides">
-             {{ ride.date }} - {{ ride.route }} - ₹{{ ride.earnings }}
-             
-            
-
+              <div class="ride-left">
+                <div class="ride-date">{{ ride.date }}</div>
+                <div class="ride-route">{{ ride.pickupLocation }} → {{ ride.dropoffLocation }}</div>
+              </div>
+              <div class="ride-right">
+                ₹{{ ride.fare }}
+              </div>
             </li>
           </ul>
            <ng-template #noRides>

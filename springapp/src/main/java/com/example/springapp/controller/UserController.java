@@ -34,11 +34,14 @@ public class UserController {
      // ✅ Login User (by phone OR email, plain text check)
     @PostMapping("/login")
     public User loginUser(@RequestBody LoginRequest loginRequest) {
+        String identifier = loginRequest.getIdentifier();
+        String password = loginRequest.getPassword();
+
         // First try phone + password
-        return userRepository.findByPhoneAndPassword(loginRequest.getIdentifier(), loginRequest.getPassword())
+        return userRepository.findByPhoneAndPassword(identifier, password)
                 .orElseGet(() -> 
                         // Then try email + password
-                        userRepository.findByEmailAndPassword(loginRequest.getIdentifier(), loginRequest.getPassword())
+                        userRepository.findByEmailAndPassword(identifier, password)
                                 .orElseThrow(() -> new RuntimeException("Invalid credentials!"))
                 );
     }

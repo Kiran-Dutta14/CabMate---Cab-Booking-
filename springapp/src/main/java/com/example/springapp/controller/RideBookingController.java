@@ -68,4 +68,28 @@ public class RideBookingController {
     public List<RideBooking> getUserRidesByStatus(@PathVariable Long userId, @PathVariable String status) {
         return rideBookingService.getUserRidesByStatus(userId, status);
     }
+
+    // 🔥 NEW: Get all pending rides (no driver assigned yet, status = BOOKED)
+    @GetMapping("/pending")
+    public List<RideBooking> getPendingRides() {
+        return rideBookingService.getPendingRides();
+    }
+
+    // 🔥 NEW: Driver accepts ride → assign driver + update status
+    @PostMapping("/{id}/accept")
+    public RideBooking acceptRide(@PathVariable Long id, @RequestParam Long driverId) {
+        return rideBookingService.assignDriverToRide(id, driverId, "CONFIRMED");
+    }
+
+    // 🔥 NEW: Driver cancels ride
+    @PostMapping("/{id}/cancel")
+    public RideBooking cancelRide(@PathVariable Long id) {
+        return rideBookingService.updateRideStatus(id, "CANCELED");
+    }
+
+    // 🔥 NEW: Complete ride → updates status + driver earnings
+     @PostMapping("/{id}/complete")
+    public RideBooking completeRide(@PathVariable Long id) {
+        return rideBookingService.completeRide(id); // ✅ calls new service method
+    }
 }

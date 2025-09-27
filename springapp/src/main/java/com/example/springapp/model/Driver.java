@@ -31,7 +31,7 @@ public class Driver {
      // ✅ Newly Added Fields
     private String status; // e.g., Active / Suspended
     private double rating;      // default rating
-    private double earnings;    // total earnings
+    private double earnings = 0.0;    // total earnings
     private LocalDate joined; // date driver registered
 
     // ✅ Constructor ensures default values on registration

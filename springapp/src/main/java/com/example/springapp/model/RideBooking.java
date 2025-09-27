@@ -6,6 +6,8 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Data
 
@@ -22,9 +24,11 @@ public class RideBooking {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties({"password","rides"})
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "driver_id")
+    @JsonIgnoreProperties({"password","rides"})
     private Driver driver;
 }
